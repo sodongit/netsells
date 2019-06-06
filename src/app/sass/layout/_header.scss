@@ -1,1 +1,10 @@
+header {
+  height: 100px;
+  width: 100%;
+  background-color: aliceblue;
+}
 
+.contents {
+  min-height: calc(100% - 150px);
+  width:100%;
+}
