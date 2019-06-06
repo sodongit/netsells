@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CvRoutingModule } from './cv-routing.module';
+import {CvComponent} from "./pages/cv/cv.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CvComponent
+  ],
   imports: [
     CommonModule,
     CvRoutingModule
