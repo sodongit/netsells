@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
+import {CvService} from "../../../../core/services/cv.service";
 
 @Component({
   selector: 'app-cv',
@@ -8,33 +9,15 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CvComponent implements OnInit {
 
-  currentBoxOnShow = null;
+  currentBoxOnShow = 1;
 
-  list = [
-    {id: 1, label: 'First name', field_name: 'first_name', type: 'input'},
-    {id: 2, label: 'Last name', field_name: 'last_name', type: 'input'},
-    {id: 3, label: 'Email', field_name: 'email', type: 'input'},
-    {id: 4, label: 'Phone number', field_name: 'phone_number', type: 'input'},
-    {id: 5, label: 'Do you live in the uk?', field_name: 'live_in_uk', type: 'checkbox'},
-    {id: 6, label: 'Git profile', field_name: 'git_profile', type: 'input'},
-    {id: 7, label: 'Upload CV', field_name: 'cv', type: 'file'},
-    {id: 8, label: 'Upload Cover Letter', field_name: 'cover_letter', type: 'file'},
-    {id: 9, label: 'About you', field_name: 'about_you', type: 'textfield'},
-  ]
+  list;
+  formCV: FormGroup;
 
-  formCV = this.fb.group({
-    first_name: [''],
-    last_name: [''],
-    email: [''],
-    phone_number: [''],
-    live_in_uk: [false],
-    git_profile: [''],
-    cv: [null],
-    cover_letter: [null],
-    about_you: [],
-  })
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private cvService : CvService) {
+    this.list = this.cvService.getCVList();
+    this.formCV = this.cvService.getFormCV()
   }
 
   ngOnInit() {

@@ -28,7 +28,8 @@ describe('CvComponent', () => {
     component.list.map((item) => {
       expect(fixture.debugElement.query(By.css(`#form-box-item-${item.id}`))).toBeTruthy();
     })
-
   });
+
+
 
 });
