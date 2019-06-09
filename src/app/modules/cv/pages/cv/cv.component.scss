@@ -11,12 +11,42 @@
 
 .form-box {
   height: 100%;
-  width: 50%;
+  width: 100%;
   border: 1px solid black;
+}
 
-  .form-box-item {
-    width:100%;
+.form-box-item-left,
+.form-box-item-right {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  float: left;
+
+  .form-box-item-list {
     height: 50px;
+    width: 100%;
+  }
+
+  .edit {
+   display:none;
   }
 }
+
+.form-box-item-right {
+
+  .form-box-item-popout {
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+
+  .edit {
+    display: inline-block;
+  }
+
+
+}
+
 

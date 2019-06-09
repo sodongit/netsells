@@ -1,9 +1,21 @@
 <div class="cv-contents">
   <div class="cv-contents-form">
     <div class="form-box">
-      <div class="form-box-item" *ngFor="let item of list">
-        <span>{{item.label}}</span>
-        <span>{{item.field_name}}</span>
+      <div class="form-box-item-left" >
+        <div class="form-box-item-list"
+             *ngFor="let item of list "
+             [ngClass]="{'edit': currentBoxOnShow === item.id}"
+          (click)="showBox(item.id)">
+          <span>{{item.label}}</span>
+          <span>{{item.field_name}}</span>
+        </div>
+      </div>
+      <div class="form-box-item-right" >
+        <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
+             [ngClass]="{'edit': currentBoxOnShow === item.id}">
+          <span>{{item.label}}</span>
+          <span>{{item.field_name}}</span>
+        </div>
       </div>
     </div>
   </div>
