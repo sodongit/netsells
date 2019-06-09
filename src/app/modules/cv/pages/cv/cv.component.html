@@ -1,22 +1,38 @@
-<div class="cv-contents">
+<form class="cv-contents" [formGroup]="formCV">
   <div class="cv-contents-form">
     <div class="form-box">
-      <div class="form-box-item-left" >
+      <div class="form-box-item-left">
         <div class="form-box-item-list"
              *ngFor="let item of list "
              [ngClass]="{'edit': currentBoxOnShow === item.id}"
-          (click)="showBox(item.id)">
+             (click)="showBox(item.id)">
           <span>{{item.label}}</span>
           <span>{{item.field_name}}</span>
         </div>
       </div>
-      <div class="form-box-item-right" >
+      <div class="form-box-item-right">
         <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
-             [ngClass]="{'edit': currentBoxOnShow === item.id}">
-          <span>{{item.label}}</span>
-          <span>{{item.field_name}}</span>
+             [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type">
+          <ng-template [ngSwitchCase]="'input'">
+            <span>{{item.label}}</span>
+            <input formControlName="{{item.field_name}}">
+          </ng-template>
+          <ng-template [ngSwitchCase]="'boolean'">
+            <span>{{item.label}}</span>
+            <input type="checkbox" formControlName="{{item.field_name}}">
+          </ng-template>
+          <ng-template [ngSwitchCase]="'file'">
+            <span>{{item.label}}</span>
+            <input type="file" formControlName="{{item.field_name}}">
+          </ng-template>
+          <ng-template [ngSwitchCase]="'textfield'">
+            <span>{{item.label}}</span>
+            <input type="textfield"formControlName="{{item.field_name}}">
+          </ng-template>
         </div>
+        <button (click)="test()"></button>
       </div>
     </div>
+
   </div>
-</div>
+</form>
