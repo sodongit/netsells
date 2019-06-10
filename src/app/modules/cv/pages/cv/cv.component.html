@@ -17,21 +17,25 @@
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input formControlName="{{item.field_name}}">
+            <button (click)="nextStage()">Continue</button>
           </ng-template>
-          <ng-template [ngSwitchCase]="'boolean'">
+          <ng-template [ngSwitchCase]="'checkbox'">
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="checkbox" formControlName="{{item.field_name}}">
+            <button (click)="nextStage()">Continue</button>
           </ng-template>
           <ng-template [ngSwitchCase]="'file'">
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="file" formControlName="{{item.field_name}}">
+            <button (click)="nextStage()">Continue</button>
           </ng-template>
           <ng-template [ngSwitchCase]="'textfield'">
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="textfield"formControlName="{{item.field_name}}">
+            <button (click)="nextStage()">Continue</button>
           </ng-template>
         </div>
         <button (click)="test()"></button>

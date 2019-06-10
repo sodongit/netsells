@@ -27,6 +27,11 @@ export class CvComponent implements OnInit {
     this.currentBoxOnShow = id;
   }
 
+  nextStage() {
+    this.currentBoxOnShow = this.currentBoxOnShow + 1;
+  }
+
+
   test() {
     console.log(this.formCV);
   }

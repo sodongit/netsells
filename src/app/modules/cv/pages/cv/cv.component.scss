@@ -15,8 +15,7 @@
   border: 1px solid black;
 }
 
-.form-box-item-left,
-.form-box-item-right {
+.form-box-item-left {
   display: inline-block;
   position: relative;
   width: 50%;
@@ -30,11 +29,17 @@
   }
 
   .edit {
-   display:none;
+   visibility: hidden;
   }
 }
 
 .form-box-item-right {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  float: left;
 
   .form-box-item-popout {
     height: 100%;
