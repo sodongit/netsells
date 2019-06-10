@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
-import {CvService} from "../../../../core/services/cv.service";
+import {CvList, CvService} from "../../../../core/services/cv.service";
 
 @Component({
   selector: 'app-cv',
@@ -11,7 +11,7 @@ export class CvComponent implements OnInit {
 
   currentBoxOnShow = 1;
 
-  list;
+  list: CvList[];
   formCV: FormGroup;
 
   constructor(private fb: FormBuilder,
