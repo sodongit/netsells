@@ -14,18 +14,22 @@
         <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
              [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type">
           <ng-template [ngSwitchCase]="'input'">
+            <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input formControlName="{{item.field_name}}">
           </ng-template>
           <ng-template [ngSwitchCase]="'boolean'">
+            <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="checkbox" formControlName="{{item.field_name}}">
           </ng-template>
           <ng-template [ngSwitchCase]="'file'">
+            <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="file" formControlName="{{item.field_name}}">
           </ng-template>
           <ng-template [ngSwitchCase]="'textfield'">
+            <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <input type="textfield"formControlName="{{item.field_name}}">
           </ng-template>
@@ -33,6 +37,5 @@
         <button (click)="test()"></button>
       </div>
     </div>
-
   </div>
 </form>
