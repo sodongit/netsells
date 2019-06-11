@@ -26,7 +26,7 @@ export class CvService {
 
   private _cvList: FullList[]= [
     {
-      id: 1,
+      id: 0,
       label: 'First name',
       field_name: 'first_name',
       type: 'input',
@@ -34,7 +34,7 @@ export class CvService {
       formControl: {first_name: ['', Validators.required]}
     },
     {
-      id: 2,
+      id: 01,
       label: 'Last name',
       field_name: 'last_name',
       type: 'input',
@@ -42,7 +42,7 @@ export class CvService {
       formControl: {last_name: ['']}
     },
     {
-      id: 3,
+      id: 2,
       label: 'Email',
       field_name: 'email',
       type: 'input',
@@ -50,7 +50,7 @@ export class CvService {
       formControl: {email: ['', Validators.required]}
     },
     {
-      id: 4,
+      id: 3,
       label: 'Phone number',
       field_name: 'phone_number',
       type: 'input',
@@ -58,7 +58,7 @@ export class CvService {
       formControl: {phone_number: ['']}
     },
     {
-      id: 5,
+      id: 4,
       label: 'Do you live in the uk?',
       field_name: 'live_in_uk',
       type: 'checkbox',
@@ -66,21 +66,21 @@ export class CvService {
       formControl: {live_in_uk: [false, Validators.required]}
     },
     {
-      id: 6,
+      id: 5,
       label: 'Git profile',
       field_name: 'git_profile',
       type: 'input',
       description: 'Please enter your git profile name',
       formControl: {git_profile: ['', Validators.required]}
     },
-    {id: 7,
+    {id: 6,
       label: 'Upload CV',
       field_name: 'cv',
       type: 'file',
       description: 'Please upload a current cv',
       formControl: {cv: [null, Validators.required]}},
     {
-      id: 8,
+      id: 7,
       label: 'Upload Cover Letter',
       field_name: 'cover_letter',
       type: 'file',
@@ -88,7 +88,7 @@ export class CvService {
       formControl: {cover_letter: [null]}
     },
     {
-      id: 9,
+      id: 8,
       label: 'About you',
       field_name: 'about_you',
       type: 'textfield',

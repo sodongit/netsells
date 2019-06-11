@@ -9,7 +9,7 @@ import {CvList, CvService} from "../../../../core/services/cv.service";
 })
 export class CvComponent implements OnInit {
 
-  currentBoxOnShow = 1;
+  currentBoxOnShow = 0;
 
   list: CvList[];
   formCV: FormGroup;
@@ -28,12 +28,14 @@ export class CvComponent implements OnInit {
   }
 
   nextStage() {
-    this.currentBoxOnShow = this.currentBoxOnShow + 1;
+    this.currentBoxOnShow = this.currentBoxOnShow === this.list.length ?
+      this.currentBoxOnShow :
+      this.currentBoxOnShow + 1;
   }
 
 
-  test() {
-    console.log(this.formCV);
+  submit() {
+
   }
 
 }
