@@ -24,7 +24,7 @@
                 <input type="checkbox" formControlName="{{item.field_name}}" >
               </ng-template>
               <ng-template [ngSwitchCase]="'file'">
-                <input type="file" formControlName="{{item.field_name}}">
+                <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
               </ng-template>
               <ng-template [ngSwitchCase]="'textfield'">
                 <input type="textfield" formControlName="{{item.field_name}}" >

@@ -10,7 +10,7 @@ import {CvList, CvService} from "../../../../core/services/cv.service";
 export class CvComponent implements OnInit {
 
   currentBoxOnShow = 0;
-
+  progress = 0;
   list: CvList[];
   formCV: FormGroup;
 

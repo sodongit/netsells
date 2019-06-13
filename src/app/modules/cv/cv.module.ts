@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CvRoutingModule } from './cv-routing.module';
 import {CvComponent} from "./pages/cv/cv.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     CvRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CvModule { }
