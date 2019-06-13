@@ -20,7 +20,7 @@
               <p>{{item.description}}</p>
               <span>{{item.label}}</span>
               <input type='text' formControlName="{{item.field_name}}" >
-              <button (click)="nextStage()">Continue</button>
+              <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
             </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'checkbox'">
@@ -30,7 +30,7 @@
               <p>{{item.description}}</p>
               <span>{{item.label}}</span>
               <input type="checkbox" formControlName="{{item.field_name}}" >
-              <button (click)="nextStage()">Continue</button>
+              <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
             </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'file'">
@@ -40,7 +40,7 @@
               <p>{{item.description}}</p>
               <span>{{item.label}}</span>
               <input type="file" formControlName="{{item.field_name}}">
-              <button (click)="nextStage()">Continue</button>
+              <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
             </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'textfield'">
@@ -50,11 +50,11 @@
               <p>{{item.description}}</p>
               <span>{{item.label}}</span>
               <input type="textfield" formControlName="{{item.field_name}}" >
-              <button (click)="nextStage()">Continue</button>
+              <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
             </div>
           </ng-template>
         </div>
-        <button (click)="submit()">submit</button>
+        <button (click)="submit()" [disabled]="formCV.invalid ">submit</button>
       </div>
     </div>
   </div>
