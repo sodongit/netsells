@@ -34,7 +34,7 @@ export class CvService {
       formControl: {first_name: ['', Validators.required]}
     },
     {
-      id: 01,
+      id: 1,
       label: 'Last name',
       field_name: 'last_name',
       type: 'input',

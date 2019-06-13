@@ -14,31 +14,47 @@
         <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
              [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type">
           <ng-template [ngSwitchCase]="'input'">
-            <p>{{item.description}}</p>
-            <span>{{item.label}}</span>
-            <input formControlName="{{item.field_name}}">
-            <button (click)="nextStage()">Continue</button>
+            <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
+             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
+              {{formCV.controls[item.field_name].dirty}}
+              <p>{{item.description}}</p>
+              <span>{{item.label}}</span>
+              <input type='text' formControlName="{{item.field_name}}" >
+              <button (click)="nextStage()">Continue</button>
+            </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'checkbox'">
-            <p>{{item.description}}</p>
-            <span>{{item.label}}</span>
-            <input type="checkbox" formControlName="{{item.field_name}}">
-            <button (click)="nextStage()">Continue</button>
+            <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
+             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
+              {{formCV.controls[item.field_name].dirty}}
+              <p>{{item.description}}</p>
+              <span>{{item.label}}</span>
+              <input type="checkbox" formControlName="{{item.field_name}}" >
+              <button (click)="nextStage()">Continue</button>
+            </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'file'">
-            <p>{{item.description}}</p>
-            <span>{{item.label}}</span>
-            <input type="file" formControlName="{{item.field_name}}">
-            <button (click)="nextStage()">Continue</button>
+            <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
+             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
+              {{formCV.controls[item.field_name].dirty}}
+              <p>{{item.description}}</p>
+              <span>{{item.label}}</span>
+              <input type="file" formControlName="{{item.field_name}}">
+              <button (click)="nextStage()">Continue</button>
+            </div>
           </ng-template>
           <ng-template [ngSwitchCase]="'textfield'">
-            <p>{{item.description}}</p>
-            <span>{{item.label}}</span>
-            <input type="textfield"formControlName="{{item.field_name}}">
-            <button (click)="nextStage()">Continue</button>
+            <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
+             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
+              {{formCV.controls[item.field_name].dirty}}
+              <p>{{item.description}}</p>
+              <span>{{item.label}}</span>
+              <input type="textfield" formControlName="{{item.field_name}}" >
+              <button (click)="nextStage()">Continue</button>
+            </div>
           </ng-template>
         </div>
-        <button (click)="test()"></button>
+        <button (click)="submit()">submit</button>
       </div>
     </div>
   </div>
