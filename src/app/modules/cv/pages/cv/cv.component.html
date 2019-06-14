@@ -12,22 +12,17 @@
       </div>
       <div class="form-box-item-right">
         <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
-             [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type">
+             [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type === 'file'">
           <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
              formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
-            <ng-template [ngSwitchCase]="'input'">
-              <input type='text' formControlName="{{item.field_name}}">
+            <ng-template [ngSwitchCase]="false">
+              <input type='{{item.type}}' formControlName="{{item.field_name}}">
+              <span *ngIf="item.type === 'textfield'">character count: {{formCV.controls[item.field_name].value.length}} </span>
             </ng-template>
-            <ng-template [ngSwitchCase]="'checkbox'">
-              <input type="checkbox" formControlName="{{item.field_name}}">
-            </ng-template>
-            <ng-template [ngSwitchCase]="'file'">
+            <ng-template [ngSwitchCase]="true">
               <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
-            </ng-template>
-            <ng-template [ngSwitchCase]="'textfield'">
-              <input type="textfield" formControlName="{{item.field_name}}">
             </ng-template>
             <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
           </div>
