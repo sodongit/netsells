@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FileType} from "../validators/file-validator";
 
 export interface CvList  {
   id: number,
@@ -78,14 +79,14 @@ export class CvService {
       field_name: 'cv',
       type: 'file',
       description: 'Please upload a current cv',
-      formControl: {cv: [null, Validators.required]}},
+      formControl: {cv: [null, [Validators.required, FileType(['txt'])]]}},
     {
       id: 7,
       label: 'Upload Cover Letter',
       field_name: 'cover_letter',
       type: 'file',
       description: 'Please upload a cover letter.',
-      formControl: {cover_letter: [null]}
+      formControl: {cover_letter: [null, FileType(['txt'])]}
     },
     {
       id: 8,
