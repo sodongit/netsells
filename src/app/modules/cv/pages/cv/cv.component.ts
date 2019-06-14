@@ -35,7 +35,7 @@ export class CvComponent implements OnInit {
 
 
   submit() {
-    console.log("test",this.formCV);
+    this.cvService.submitForm(this.formCV);
   }
 
 }
