@@ -10,6 +10,7 @@ import {PageNotFoundComponent} from "./modules/404/pages/page-not-found/page-not
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
+import {DirectivesModule} from "./core/directives/directives.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     CvModule,
     ThanksModule,
     HttpClientModule,
+    DirectivesModule,
     AppRoutingModule
   ],
   providers: [],

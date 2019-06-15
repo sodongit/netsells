@@ -18,7 +18,8 @@
             <p>{{item.description}}</p>
             <span>{{item.label}}</span>
             <ng-template [ngSwitchCase]="false">
-              <input type='{{item.type}}' formControlName="{{item.field_name}}">
+              <input type='{{item.type}}' formControlName="{{item.field_name}}" *ngIf="item.type !== 'number'">
+              <input type='text' digitOnly formControlName="{{item.field_name}}" *ngIf="item.type === 'number'">
               <span *ngIf="item.type === 'textfield'">character count: {{formCV.controls[item.field_name].value.length}} </span>
             </ng-template>
             <ng-template [ngSwitchCase]="true">
