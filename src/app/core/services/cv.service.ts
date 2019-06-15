@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileType} from "../validators/file-validator";
 import {ApiCallService} from "./api-call.service";
+import {PhoneNumber} from "../validators/phone-number-validator";
 
 export interface CvList {
   id: number,
@@ -55,9 +56,9 @@ export class CvService {
       id: 3,
       label: 'Phone number',
       field_name: 'phone_number',
-      type: 'text',
+      type: 'number',
       description: 'Please enter the phone number we can contact you on.',
-      formControl: {phone_number: ['', Validators.pattern(/^\d+$/)]}
+      formControl: {phone_number: ['', PhoneNumber()]}
     },
     {
       id: 4,
