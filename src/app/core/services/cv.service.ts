@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileType} from "../validators/file-validator";
 import {ApiCallService} from "./api-call.service";
 import {PhoneNumber} from "../validators/phone-number-validator";
+import {GitUrl} from "../validators/gitUrl";
 
 export interface CvList {
   id: number,
@@ -34,7 +35,7 @@ export class CvService {
       field_name: 'first_name',
       type: 'text',
       description: 'Please enter your first name.',
-      formControl: {first_name: ['', [Validators.required, Validators.minLength(2)]]}
+      formControl: ['', [Validators.required, Validators.minLength(2)]]
     },
     {
       id: 1,
@@ -42,7 +43,7 @@ export class CvService {
       field_name: 'last_name',
       type: 'text',
       description: 'Please enter your last name.',
-      formControl: {last_name: ['']}
+      formControl: ['']
     },
     {
       id: 2,
@@ -50,7 +51,7 @@ export class CvService {
       field_name: 'email',
       type: 'email',
       description: 'Please enter a valid email address.',
-      formControl: {email: ['', [Validators.required, Validators.email]]}
+      formControl: ['', [Validators.required, Validators.email]]
     },
     {
       id: 3,
@@ -58,7 +59,7 @@ export class CvService {
       field_name: 'phone_number',
       type: 'number',
       description: 'Please enter the phone number we can contact you on.',
-      formControl: {phone_number: ['', PhoneNumber()]}
+      formControl: ['']
     },
     {
       id: 4,
@@ -66,15 +67,15 @@ export class CvService {
       field_name: 'live_in_uk',
       type: 'checkbox',
       description: 'Are you a current resident of the uk?',
-      formControl: {live_in_uk: [false, Validators.required]}
+      formControl: [false, Validators.required]
     },
     {
       id: 5,
-      label: 'Git profile',
+      label: 'Git profile url',
       field_name: 'git_profile',
       type: 'text',
-      description: 'Please enter your git profile name',
-      formControl: {git_profile: ['', Validators.required]}
+      description: 'Please enter your git profile url',
+      formControl: ['', [Validators.required, GitUrl()]]
     },
     {
       id: 6,
@@ -82,7 +83,7 @@ export class CvService {
       field_name: 'cv',
       type: 'file',
       description: 'Please upload a current cv',
-      formControl: {cv: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]]}
+      formControl: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]]
     },
     {
       id: 7,
@@ -90,7 +91,7 @@ export class CvService {
       field_name: 'cover_letter',
       type: 'file',
       description: 'Please upload a cover letter.',
-      formControl: {cover_letter: [null, FileType(['txt', 'docx', 'pdf'])]}
+      formControl: [null, FileType(['txt', 'docx', 'pdf'])]
     },
     {
       id: 8,
@@ -98,7 +99,7 @@ export class CvService {
       field_name: 'about_you',
       type: 'textfield',
       description: 'Now tell us something about yourself in a minimum of 100 characters.',
-      formControl: {about_you: ['', [Validators.required, Validators.minLength(100)]]}
+      formControl: ['', [Validators.required, Validators.minLength(100)]]
     },
   ];
 
@@ -110,7 +111,9 @@ export class CvService {
 
   getFormCV(): FormGroup {
     return this.fb.group(this._cvList.reduce((ac, cr) => {
-      Object.assign(ac, cr.formControl);
+      const control = {};
+      control[cr.field_name]  = cr.formControl
+      Object.assign(ac, control);
       return ac;
     }, {}));
   }

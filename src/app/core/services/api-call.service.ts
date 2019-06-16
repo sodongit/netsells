@@ -13,7 +13,6 @@ export class ApiCallService {
 
 
   call(data) {
-    console.log("data", data);
     this.apiService.apiCalled();
     this.http.post('https://recruitment-submissions.netsells.co.uk/api/vacancies/javascript-developer/submissions', data, {
       reportProgress: true,
