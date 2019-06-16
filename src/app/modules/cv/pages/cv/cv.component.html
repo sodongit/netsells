@@ -28,7 +28,12 @@
             <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
           </div>
         </div>
-        <button (click)="submit()" [disabled]="formCV.invalid ">submit</button>
+        <button (click)="submit()">submit</button>
+        <div class="error-message" *ngIf="apiError">
+          <ng-template ngFor let-apiErrorMessage [ngForOf]="apiErrorMessages" >
+          <span>{{apiErrorMessage}}</span>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
