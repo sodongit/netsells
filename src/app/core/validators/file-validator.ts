@@ -2,11 +2,11 @@ import {FormControl} from '@angular/forms';
 
 export function FileType(types: string[]) {
 
-  const errorWithFileType = fileTypeError(types);
+  const correctFileType = fileTypeCheck(types);
 
   return function (control: FormControl) {
     // validate the file type
-    return fileValueCheck(control.value) && !errorWithFileType(control.value.name) ?
+    return fileValueCheck(control.value) && correctFileType(control.value.name) ?
       null :
       {
         fileType: true
@@ -21,13 +21,13 @@ const fileValueCheck = (file) => {
     file.name !== '';
 }
 
-const fileTypeError = (types) => {
+const fileTypeCheck = (types) => {
   return (fileName) => {
     // get the extension
     if (fileName) {
       const [name, extension] = fileName.split('.');
       // check the array of allowable file types
-      return types.reduce((ac, type) => ac ? ac : type.toLowerCase() !== extension.toLowerCase(), false)
+      return types.reduce((ac, type) => ac ? ac : type.toLowerCase() === extension.toLowerCase(), false)
     }
   }
 }
