@@ -20,6 +20,7 @@ export class ApiCallService {
     }).subscribe(res => {
         console.log("res", res);
         this.apiService.apiReturned();
+        this.apiService.nextAction();
       },
       error => {
       const {errors} =  error.error;
