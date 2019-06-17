@@ -21,6 +21,10 @@ export class CvService {
               private apiCall: ApiCallService) {
   }
 
+  // TODO refactor validators to be dynamic
+  // TODO refactor to make custom validators dynamic
+  // TODO create api call for cvList to remove from frontend code.
+
   private _cvList = {
     first_name: {
       id: 0,
@@ -114,6 +118,8 @@ export class CvService {
     },
 };
 
+  //TODO refactor Object.keys(this._cvList)
+
   getCVList(): CvList[] {
     return Object.keys(this._cvList).map((key) => {
       const {id, label, type, description} = this._cvList[key]
@@ -121,6 +127,8 @@ export class CvService {
       return {id, label, field_name, type, description};
     });
   }
+
+  //TODO refactor Object.keys(this._cvList)
 
   getFormCV(): FormGroup {
     return this.fb.group(Object.keys(this._cvList).reduce((ac, cr) => {
@@ -132,7 +140,6 @@ export class CvService {
   }
 
   getControlErrorMessage(control, error) {
-
     return this._cvList[control].errorMessage[error];
   }
 

@@ -5,6 +5,11 @@ import {ApiService} from "../../../../shared/services/api.service";
 import {Subscription} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
+
+
+// TODO split up html into smaller components
+// TODO remove animations into own ts file
+
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
@@ -115,15 +120,18 @@ export class CvComponent implements OnInit {
   }
 
   allDirtyCheck() {
+    // get the form key, check if its dirty or if not valid, return if there is a false.
     return  Object.keys(this.formCV.controls)
       .map((key) => this.formCV.controls[key].dirty ? this.formCV.controls[key].dirty : this.formCV.controls[key].valid)
       .reduce((ac,cr) => ac ? cr : ac,true);
   }
 
   setErrorMessages() {
+    // get the key for the form, filter out valid control keys, reduce all the error messages into on array
     this.errorMessages =  Object.keys(this.formCV.controls)
       .filter((control) => this.formCV.controls[control].invalid)
       .reduce((ac, control) => {
+        // get the error keys from the control, return the error message for the control.
         const errors = Object.keys(this.formCV.controls[control].errors)
           .map((error) => this.cvService.getControlErrorMessage(control, error));
         return [...ac, ...errors];
@@ -133,5 +141,7 @@ export class CvComponent implements OnInit {
   submit() {
     this.cvService.submitForm(this.formCV);
   }
+
+
 
 }
