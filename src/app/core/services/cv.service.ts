@@ -83,7 +83,7 @@ export class CvService {
       field_name: 'cv',
       type: 'file',
       description: 'Please upload a current cv',
-      formControl: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]]
+      formControl: [{name: ''}, [Validators.required, FileType(['txt', 'docx', 'pdf'])]]
     },
     {
       id: 7,
@@ -91,13 +91,13 @@ export class CvService {
       field_name: 'cover_letter',
       type: 'file',
       description: 'Please upload a cover letter.',
-      formControl: [null, FileType(['txt', 'docx', 'pdf'])]
+      formControl: [{name: ''}, FileType(['txt', 'docx', 'pdf'])]
     },
     {
       id: 8,
       label: 'About you',
       field_name: 'about_you',
-      type: 'textfield',
+      type: 'textArea',
       description: 'Now tell us something about yourself in a minimum of 100 characters.',
       formControl: ['', [Validators.required, Validators.minLength(100)]]
     },
