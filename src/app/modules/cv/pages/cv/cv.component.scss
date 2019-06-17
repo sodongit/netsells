@@ -63,16 +63,30 @@
     border-left: 0px;
     border-radius: 0 25px 25px 25px;
     padding: 0 22.5px 10px 17px;
+    z-index: 100;
 
     textarea {
       width: 100%;
       height: 100px;
     }
-  }
 
-  .edit {
-    width: auto;
-  }
+
+}
+
+button:enabled {
+  background-color: #9dff96;
+
+}
+
+button:disabled {
+  background-color: #bafffd;
+}
+
+
+
+.edit {
+  width: auto;
+}
 
 
 }
@@ -97,12 +111,34 @@
   }
 }
 
-
-.valid {
-  //border: 1px solid green;
-
+.submit-button {
+  background-color: #ff8c87;
 }
 
-.invalid {
-  //border: 1px solid red;
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.button {
+  margin: 10px 0px 0 17px;
+  outline: none;
+  text-decoration: none;
+  border-radius: 15px;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 30px;
+  width: 120px;
+  opacity: 1;
+  border: 1px solid rgba(124, 202, 120, 0.6);
+
+  span {
+    color: rgba(26, 43, 25, 0.8);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+  }
 }

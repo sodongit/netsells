@@ -4,7 +4,6 @@ import {CvList, CvService} from "../../../../core/services/cv.service";
 import {ApiService} from "../../../../shared/services/api.service";
 import {Subscription} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {isWhiteSpace} from "tslint";
 
 @Component({
   selector: 'app-cv',
@@ -82,6 +81,10 @@ export class CvComponent implements OnInit {
   apiError = false;
   apiErrorMessages = [];
 
+  allDirty = false;
+  errorMessages = [];
+
+
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder,
@@ -96,6 +99,7 @@ export class CvComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   showBox(id) {
@@ -103,11 +107,28 @@ export class CvComponent implements OnInit {
   }
 
   nextStage() {
+    this.allDirty = this.allDirtyCheck();
+    this.setErrorMessages();
     this.currentBoxOnShow = this.currentBoxOnShow === this.list.length ?
       this.currentBoxOnShow :
       this.currentBoxOnShow + 1;
   }
 
+  allDirtyCheck() {
+    return  Object.keys(this.formCV.controls)
+      .map((key) => this.formCV.controls[key].dirty ? this.formCV.controls[key].dirty : this.formCV.controls[key].valid)
+      .reduce((ac,cr) => ac ? cr : ac,true);
+  }
+
+  setErrorMessages() {
+    this.errorMessages =  Object.keys(this.formCV.controls)
+      .filter((control) => this.formCV.controls[control].invalid)
+      .reduce((ac, control) => {
+        const errors = Object.keys(this.formCV.controls[control].errors)
+          .map((error) => this.cvService.getControlErrorMessage(control, error));
+        return [...ac, ...errors];
+      }, []);
+  }
 
   submit() {
     this.cvService.submitForm(this.formCV);
