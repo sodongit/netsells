@@ -6,11 +6,11 @@ export function FileType(types: string[]) {
 
   return function (control: FormControl) {
     // validate the file type
-    return fileValueCheck(control.value) && correctFileType(control.value.name) ?
-      null :
+    return fileValueCheck(control.value) && !correctFileType(control.value.name) ?
       {
         fileType: true
-      };
+      }:
+      null;
   }
 }
 
@@ -28,6 +28,8 @@ const fileTypeCheck = (types) => {
       const [name, extension] = fileName.split('.');
       // check the array of allowable file types
       return types.reduce((ac, type) => ac ? ac : type.toLowerCase() === extension.toLowerCase(), false)
+    } else {
+      return true;
     }
   }
 }
