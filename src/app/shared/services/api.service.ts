@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import {Router} from "@angular/router";
 
 export interface ApiError {
   error: boolean;
@@ -15,7 +16,7 @@ export class ApiService{
   private _apiError: BehaviorSubject<ApiError> = new BehaviorSubject({error: false, errors:[]});
   private _apiCalled: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   apiError() {
     return this._apiError;
@@ -27,6 +28,10 @@ export class ApiService{
 
   apiReturned() {
     this._apiCalled.next(false);
+  }
+
+  nextAction() {
+    this.router.navigate(['thanks']);
   }
 
   setApiError(error) {
