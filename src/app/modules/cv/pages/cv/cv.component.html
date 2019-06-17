@@ -4,36 +4,60 @@
       <div class="form-box-item-left">
         <div class="form-box-item-list"
              *ngFor="let item of list "
-             [ngClass]="{'edit': currentBoxOnShow === item.id}"
              (click)="showBox(item.id)">
-          <span>{{item.label}}</span>
-          <span>{{formCV.controls[item.field_name].value}}</span>
+          <div class="boxChoice"
+               [@boxChoice]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'">
+            <span>{{item.label}}</span>
+          </div>
+          <div class="boxChoiceText"
+               [@boxChoiceText]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
+               [ngSwitch]="item.type === 'file'">
+            <ng-template [ngSwitchCase]="false">
+              <span>{{formCV.controls[item.field_name].value}}</span>
+            </ng-template>
+            <ng-template [ngSwitchCase]="true">
+              <span>{{formCV.controls[item.field_name].value.name}}</span>
+            </ng-template>
+          </div>
         </div>
       </div>
       <div class="form-box-item-right">
-        <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout" *ngFor="let item of list "
-             [ngClass]="{'edit': currentBoxOnShow === item.id}" [ngSwitch]="item.type === 'file'">
-          <div class="" [ngClass]="formCV.controls[item.field_name].valid &&
-             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'">
-            <p>{{item.description}}</p>
-            <span>{{item.label}}</span>
-            <ng-template [ngSwitchCase]="false">
-              <input type='{{item.type}}' formControlName="{{item.field_name}}" *ngIf="item.type !== 'number'">
-              <input type='text' digitOnly formControlName="{{item.field_name}}" *ngIf="item.type === 'number'">
-              <span *ngIf="item.type === 'textfield'">character count: {{formCV.controls[item.field_name].value.length}} </span>
-            </ng-template>
-            <ng-template [ngSwitchCase]="true">
-              <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
-            </ng-template>
-            <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
+        <div class="form-box-item-wrapper">
+          <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout"
+               *ngFor="let item of list "
+               [ngClass]="{'edit': currentBoxOnShow === item.id}"
+               [@editBoxChoice]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
+               [ngSwitch]="item.type === 'file'">
+            <div class="form-box-item-content"
+                 [ngClass]="formCV.controls[item.field_name].valid &&
+             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'"
+                 [@editBoxChoiceContent]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
+            >
+              <p>{{item.description}}</p>
+              <label for="form-textArea"></label>
+              <ng-template [ngSwitchCase]="false">
+                <input type='{{item.type}}' formControlName="{{item.field_name}}" *ngIf="item.type !== 'number' && item.type !== 'textArea'">
+                <input type='text' digitOnly formControlName="{{item.field_name}}" *ngIf="item.type === 'number'">
+                <textarea id="form-textArea" formControlName="{{item.field_name}}" *ngIf="item.type === 'textArea'"></textarea>
+                <span
+                  *ngIf="item.type === 'textArea'">character count: {{formCV.controls[item.field_name].value.length}} </span>
+              </ng-template>
+              <ng-template [ngSwitchCase]="true">
+                <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
+              </ng-template>
+              <button (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
+            </div>
           </div>
         </div>
+      </div>
+      <div *ngIf="formCV.valid">
+        <span>Form complete press button</span>
         <button (click)="submit()">submit</button>
-        <div class="error-message" *ngIf="apiError">
-          <ng-template ngFor let-apiErrorMessage [ngForOf]="apiErrorMessages" >
+      </div>
+      <div class="error-message" *ngIf="apiError">
+        <ng-template ngFor let-apiErrorMessage [ngForOf]="apiErrorMessages">
           <span>{{apiErrorMessage}}</span>
-          </ng-template>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>

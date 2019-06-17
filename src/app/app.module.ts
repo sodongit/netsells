@@ -11,6 +11,7 @@ import { FileUploadComponent } from './shared/components/file-upload/file-upload
 import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {DirectivesModule} from "./core/directives/directives.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,8 @@ import {DirectivesModule} from "./core/directives/directives.module";
     ThanksModule,
     HttpClientModule,
     DirectivesModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],

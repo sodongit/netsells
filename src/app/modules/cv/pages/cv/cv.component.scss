@@ -1,9 +1,12 @@
 .cv-contents {
+
   height: 100%;
   width: 100%;
 }
 
 .cv-contents-form {
+  align-items: center;
+  display: flex;
   height: 100%;
   width: 1000px;
   margin: 0 auto;
@@ -12,53 +15,79 @@
 .form-box {
   height: 75%;
   width: 100%;
-  border: 1px solid black;
 }
 
 .form-box-item-left {
   display: inline-block;
   position: relative;
-  width: 50%;
+  width: 20%;
   height: 100%;
   margin: 0;
   float: left;
 
   .form-box-item-list {
+
     height: 50px;
     width: 100%;
   }
 
   .edit {
-   visibility: hidden;
   }
 }
 
 .form-box-item-right {
-  display: inline-block;
   position: relative;
-  width: 50%;
+  width: 80%;
   height: 100%;
   margin: 0;
   float: left;
 
-  .form-box-item-popout {
-    height: 100%;
+
+  .form-box-item-wrapper{
     width: 100%;
-    display: none;
+    height:100%;
   }
 
+  .form-box-item-popout {
+    height: 52px;
+    width: auto;
+
+  }
+
+  .form-box-item-content{
+    background-color: #E1FAFF;
+    position: relative;
+    border: 1px solid #b9ced2;
+    border-left: 0px;
+    border-radius: 0 25px 25px 25px;
+    padding: 0 22.5px 10px 17px;
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+  }
   .edit {
-    display: inline-block;
+    height:auto;
+    width:auto;
   }
 
 
 }
+.boxChoiceText,
+.boxChoice {
+  align-items: center;
+  display: flex;
+  height:100%;
+  width: 48%;
+  float:left;
+}
 
 .valid {
-  border: 1px solid green;
+  //border: 1px solid green;
 
 }
 
 .invalid {
-  border: 1px solid red;
+  //border: 1px solid red;
 }
