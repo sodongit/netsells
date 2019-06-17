@@ -16,7 +16,7 @@ import {isWhiteSpace} from "tslint";
         paddingLeft: '0',
         width: '50%',
         opacity: '0.8',
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         border: '1px solid ',
         borderRight: '1px solid',
         borderColor: 'white',
