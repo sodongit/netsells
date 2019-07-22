@@ -4,13 +4,15 @@ import {FileUploadComponent} from "./components/file-upload/file-upload.componen
 import { UploadProgressComponent } from './components/upload-progress/upload-progress.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {CardComponent} from "./components/card/card.component";
 
 @NgModule({
   declarations: [
     FileUploadComponent,
     UploadProgressComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { FooterComponent } from './components/footer/footer.component';
   exports: [
     FileUploadComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CardComponent
   ]
 })
 export class SharedModule { }

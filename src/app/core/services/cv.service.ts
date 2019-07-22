@@ -26,99 +26,129 @@ export class CvService {
   // TODO create api call for cvList to remove from frontend code.
 
   private _cvList = {
-    first_name: {
-      id: 0,
-      label: 'First name',
-      type: 'text',
-      description: 'Please enter your first name.',
-      formControl: ['', [Validators.required, Validators.minLength(2)]],
-      errorMessage: {
-        required: 'A First name is required',
-        minlength: 'Your first name needs at least 2 characters',
+    step1: {
+      step: 1,
+      title: 'Personal Details',
+      description: 'Please complete your personal details section by clicking complete',
+      form: {
+        first_name: {
+          id: 0,
+          label: 'First name',
+          type: 'text',
+          description: 'Please enter your first name.',
+          formControl: ['', [Validators.required, Validators.minLength(2)]],
+          errorMessage: {
+            required: 'A First name is required',
+            minlength: 'Your first name needs at least 2 characters',
+          }
+        },
+        last_name: {
+          id: 1,
+          label: 'Second name',
+          type: 'text',
+          description: 'Please enter your last name.',
+          formControl: ['']
+        },
+        email: {
+          id: 2,
+          label: 'Email Address',
+          type: 'email',
+          description: 'Please enter a valid email address.',
+          formControl: ['', [Validators.required, Validators.email]],
+          errorMessage: {
+            required: 'An email address is required',
+            email: 'The email address seems to be incorrectly formatted',
+          }
+        },
+        phone_number: {
+          id: 3,
+          label: 'Phone Number',
+          type: 'number',
+          description: 'Please enter the phone number we can contact you on.',
+          formControl: ['']
+        },
       }
     },
-    last_name: {
-      id: 1,
-      label: 'Last name',
-      type: 'text',
-      description: 'Please enter your last name.',
-      formControl: ['']
-    },
-    email: {
-      id: 2,
-      label: 'Email',
-      type: 'email',
-      description: 'Please enter a valid email address.',
-      formControl: ['', [Validators.required, Validators.email]],
-      errorMessage: {
-        required: 'An email address is required',
-        email: 'The email address seems to be incorrectly formatted',
+    step2: {
+      step: 2,
+      title: 'More About You',
+      description: 'Please complete this section by clicking complete',
+      form: {
+        live_in_uk: {
+          id: 4,
+          label: 'Do you live in the UK?',
+          type: 'radio',
+          description: 'Are you a current resident of the uk?',
+          formControl: ['', Validators.required],
+          errorMessage: {
+            required: 'An answer to "Do you live in the uk" is required',
+            gitUrl: 'The Git profile url seems to be incorrectly formatted',
+          }
+        },
+        git_profile: {
+          id: 5,
+          label: 'Your Git Profile',
+          type: 'text',
+          description: 'Please enter your git profile url',
+          formControl: ['', [Validators.required, GitUrl()]],
+          errorMessage: {
+            required: 'The Git profile url is required',
+            gitUrl: 'The Git profile url seems to be incorrectly formatted',
+          }
+        },
+        about_you: {
+          id: 8,
+          label: 'About you',
+          type: 'textArea',
+          description: 'Now tell us something about yourself in a minimum of 100 characters.',
+          formControl: ['', [Validators.required, Validators.minLength(100)]],
+          errorMessage: {
+            required: 'The About You description is required',
+            minlength: 'The About You needs at least 100 charictores'
+          }
+        }
       }
     },
-    phone_number: {
-      id: 3,
-      label: 'Phone number',
-      type: 'number',
-      description: 'Please enter the phone number we can contact you on.',
-      formControl: ['']
-    },
-    live_in_uk: {
-      id: 4,
-      label: 'Do you live in the uk?',
-      type: 'radio',
-      description: 'Are you a current resident of the uk?',
-      formControl: ['', Validators.required],
-      errorMessage: {
-        required: 'An answer to "Do you live in the uk" is required',
-        gitUrl: 'The Git profile url seems to be incorrectly formatted',
+    step3: {
+      step: 3,
+      title: 'Files Upload',
+      description: 'Just upload your cover letter to complete this section',
+      form: {
+        cv: {
+          id: 6,
+          label: 'Upload Your CV',
+          type: 'file',
+          description: 'Drag and drop or Upload you CV file here',
+          formControl: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]],
+          errorMessage: {
+            required: 'The CV file is required',
+            fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
+          }
+        },
+        cover_letter: {
+          id: 7,
+          label: 'Upload Your Cover Letter',
+          type: 'file',
+          description: 'Drag and drop or Upload you Cover Letter file here',
+          formControl: [null, [FileType(['txt', 'docx', 'pdf'])]],
+          errorMessage: {
+            fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
+          }
+        },
       }
     },
-    git_profile: {
-      id: 5,
-      label: 'Git profile url',
-      type: 'text',
-      description: 'Please enter your git profile url',
-      formControl: ['', [Validators.required, GitUrl()]],
-      errorMessage: {
-        required: 'The Git profile url is required',
-        gitUrl: 'The Git profile url seems to be incorrectly formatted',
-      }
-    },
-    cv: {
-      id: 6,
-      label: 'Upload CV',
-      type: 'file',
-      description: 'Please upload a current cv',
-      formControl: [ null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]],
-      errorMessage: {
-        required: 'The CV file is required',
-        fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
-      }
-    },
-    cover_letter: {
-      id: 7,
-      label: 'Upload Cover Letter',
-      type: 'file',
-      description: 'Please upload a cover letter.',
-      formControl: [ null, [ FileType(['txt', 'docx', 'pdf'])]],
-      errorMessage: {
-        fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
-      }
-    },
-    about_you: {
-      id: 8,
-      label: 'About you',
-      type: 'textArea',
-      description: 'Now tell us something about yourself in a minimum of 100 characters.',
-      formControl: ['', [Validators.required, Validators.minLength(100)]],
-      errorMessage: {
-        required: 'The About You description is required',
-        minlength: 'The About You needs at least 100 charictores'
-      }
-    },
-};
+  };
 
   //TODO refactor Object.keys(this._cvList)
+
+  getCardList() {
+    return Object.keys(this._cvList).map((key) => {
+      const {step, title, description, form} = this._cvList[key];
+      const outof = Object.keys(form).length;
+      return {step, title, description, outof};
+    });
+  }
+
 
   getCVList(): CvList[] {
     return Object.keys(this._cvList).map((key) => {
@@ -131,9 +161,14 @@ export class CvService {
   //TODO refactor Object.keys(this._cvList)
 
   getFormCV(): FormGroup {
-    return this.fb.group(Object.keys(this._cvList).reduce((ac, cr) => {
+    const formObject = Object.keys(this._cvList)
+      .map((key) => this._cvList[key].form)
+      .reduce((ac,cr) => Object.assign(ac,cr), {});
+
+     return this.fb.group(Object.keys(formObject)
+      .reduce((ac, cr) => {
       const control = {};
-      control[cr]  = this._cvList[cr].formControl;
+      control[cr] = formObject[cr].formControl;
       Object.assign(ac, control);
       return ac;
     }, {}));

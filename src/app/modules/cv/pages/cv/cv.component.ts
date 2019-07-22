@@ -82,6 +82,7 @@ export class CvComponent implements OnInit {
   progress = 0;
   list: CvList[];
   formCV: FormGroup;
+  cardList;
 
   apiError = false;
   apiErrorMessages = [];
@@ -95,6 +96,7 @@ export class CvComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private cvService : CvService,
               private apiService: ApiService) {
+    this.cardList = this.cvService.getCardList();
     this.list = this.cvService.getCVList();
     this.formCV = this.cvService.getFormCV();
     this.subscription.add(this.apiService.apiError().subscribe(({error, errors}) => {

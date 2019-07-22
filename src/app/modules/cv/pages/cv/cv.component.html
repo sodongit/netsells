@@ -1,73 +1,8 @@
-<form class="cv-contents" [formGroup]="formCV">
-  <div class="cv-contents-form">
-    <div class="form-box">
-      <div class="form-box-item-left">
-        <div class="form-box-item-list"
-             *ngFor="let item of list "
-             (click)="showBox(item.id)">
-          <div class="boxChoice"
-               [@boxChoice]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'">
-            <span>{{item.label}}</span>
-          </div>
-          <div class="boxChoiceText"
-               [@boxChoiceText]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
-               [ngSwitch]="item.type === 'file'">
-            <ng-template [ngSwitchCase]="false">
-              <span>{{formCV.controls[item.field_name].value}}</span>
-            </ng-template>
-            <ng-template [ngSwitchCase]="true">
-              <span *ngIf="formCV.controls[item.field_name].value !== null">{{formCV.controls[item.field_name].value.name}}</span>
-            </ng-template>
-          </div>
-        </div>
-      </div>
-      <div class="form-box-item-right">
-        <div class="form-box-item-wrapper">
-          <div id="form-box-item-{{item.id}}-popout" class="form-box-item-popout"
-               *ngFor="let item of list "
-               [ngClass]="{'edit': currentBoxOnShow === item.id}"
-               [@editBoxChoice]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
-               [ngSwitch]="item.type === 'file'">
-            <div class="form-box-item-content"
-                 [ngClass]="formCV.controls[item.field_name].valid &&
-             formCV.controls[item.field_name].dirty ? 'valid': 'invalid'"
-                 [@editBoxChoiceContent]="currentBoxOnShow === item.id ? 'nonedit' : 'edit'"
-            >
-              <p>{{item.description}}</p>
-              <label for="form-textArea"></label>
-              <ng-template [ngSwitchCase]="false">
-                <input type='{{item.type}}' formControlName="{{item.field_name}}" *ngIf="item.type !== 'number' && item.type !== 'textArea' && item.type !== 'radio'">
-                <input type='text' digitOnly formControlName="{{item.field_name}}" *ngIf="item.type === 'number'">
-                <textarea id="form-textArea" formControlName="{{item.field_name}}" *ngIf="item.type === 'textArea'"></textarea>
-                <div class="radio-buttons"*ngIf="item.type === 'radio'">
-                  <input type="radio" id="resident-yes"
-                         name="{{item.field_name}}" value="true" checked formControlName="{{item.field_name}}">
-                  <label for="resident-yes">True</label>
-                  <input type="radio" id="resident-no"
-                         name="{{item.field_name}}" value="false" checked formControlName="{{item.field_name}}">
-                  <label for="resident-no">False</label>
-                </div>
-                <span
-                  *ngIf="item.type === 'textArea'">character count: {{formCV.controls[item.field_name].value.length}} </span>
-              </ng-template>
-              <ng-template [ngSwitchCase]="true">
-                <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
-              </ng-template>
-              <button class="next-button button" (click)="nextStage()" [disabled]="formCV.controls[item.field_name].invalid ">Continue</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="allDirty && formCV.invalid === true">
-        <p *ngFor="let error of errorMessages">{{error}}</p>
-      </div>
-      <div *ngIf="allDirty && formCV.valid">
-        <p>The Form is complete. Please now submit.</p>
-        <button class="submit-button button ripple" (click)="submit()">submit</button>
-      </div>
-      <div class="error-message" *ngIf="apiError">
-          <p *ngFor="let apiErrorMessage of apiErrorMessages">{{apiErrorMessage}}</p>
-      </div>
-    </div>
-  </div>
-</form>
+<div>
+  <h2> Application Steps</h2>
+  <span>Select the step you wish to complete.</span>
+</div>
+<div *ngFor="let cardInfo of cardList">
+  <app-card [cardInfo]="cardInfo"></app-card>
+</div>
+

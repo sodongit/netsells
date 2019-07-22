@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     SharedModule,
@@ -28,7 +28,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DirectivesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
