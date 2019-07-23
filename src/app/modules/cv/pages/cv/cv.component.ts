@@ -6,7 +6,6 @@ import {Subscription} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
-
 // TODO split up html into smaller components
 // TODO remove animations into own ts file
 
@@ -39,62 +38,34 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       })),
       transition('nonedit => edit', [animate('375ms ease-in')]),
       transition('edit => nonedit', [animate('375ms 50ms ease-out')])
-    ]),
-    trigger('boxChoiceText', [
-      state('edit', style({
-        color: 'black'
-      })),
-      state('nonedit', style({
-        width: '0',
-        color: 'white',
-      })),
-      transition('nonedit => edit', [animate('1ms 375ms ease-in')]),
-      transition('edit => nonedit', [animate('100ms  ease-out')])
-    ]),
-    trigger('editBoxChoice', [
-      state('edit', style({
-        paddingLeft: '0',
-        opacity: '0'
-      })),
-      state('nonedit', style({
-        paddingLeft: '12.5%',
-        opacity: '1'
-      })),
-      transition('nonedit => edit', [animate('300ms 75ms ease-in')]),
-      transition('edit => nonedit', [animate('375ms ease-out')])
-    ]),
-    trigger('editBoxChoiceContent', [
-      state('edit', style({
-        opacity: '0'
-      })),
-      state('nonedit', style({
-        opacity: '1'
-      })),
-      transition('nonedit => edit', [animate('500ms ease-in')]),
-      transition('edit => nonedit', [animate('375ms ease-out')])
     ])
   ]
 })
 
 export class CvComponent implements OnInit {
 
-  currentBoxOnShow = 0;
-  progress = 0;
   list: CvList[];
   formCV: FormGroup;
   cardList;
+  cardStatus = 'open';
+  cardCompletion = {
+    1: 2,
+    2: 2,
+    3: 2
+  };
+
+  stepOpen = 1;
 
   apiError = false;
   apiErrorMessages = [];
 
-  allDirty = false;
   errorMessages = [];
 
 
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder,
-              private cvService : CvService,
+              private cvService: CvService,
               private apiService: ApiService) {
     this.cardList = this.cvService.getCardList();
     this.list = this.cvService.getCVList();
@@ -109,28 +80,21 @@ export class CvComponent implements OnInit {
 
   }
 
-  showBox(id) {
-    this.currentBoxOnShow = id;
+  completeCard(step_id) {
+  this.cardStatus = 'closed';
   }
 
-  nextStage() {
-    this.allDirty = this.allDirtyCheck();
-    this.setErrorMessages();
-    this.currentBoxOnShow = this.currentBoxOnShow === this.list.length ?
-      this.currentBoxOnShow :
-      this.currentBoxOnShow + 1;
-  }
 
   allDirtyCheck() {
     // get the form key, check if its dirty or if not valid, return if there is a false.
-    return  Object.keys(this.formCV.controls)
+    return Object.keys(this.formCV.controls)
       .map((key) => this.formCV.controls[key].dirty ? this.formCV.controls[key].dirty : this.formCV.controls[key].valid)
-      .reduce((ac,cr) => ac ? cr : ac,true);
+      .reduce((ac, cr) => ac ? cr : ac, true);
   }
 
   setErrorMessages() {
     // get the key for the form, filter out valid control keys, reduce all the error messages into on array
-    this.errorMessages =  Object.keys(this.formCV.controls)
+    this.errorMessages = Object.keys(this.formCV.controls)
       .filter((control) => this.formCV.controls[control].invalid)
       .reduce((ac, control) => {
         // get the error keys from the control, return the error message for the control.
@@ -140,10 +104,10 @@ export class CvComponent implements OnInit {
       }, []);
   }
 
+
   submit() {
     this.cvService.submitForm(this.formCV);
   }
-
 
 
 }

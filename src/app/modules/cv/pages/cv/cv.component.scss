@@ -1,144 +1,125 @@
-.cv-contents {
-  background-color: rgba(228, 255, 245, 0.2);
-  height: 100%;
+.full-step-title {
   width: 100%;
+  height: 20%;
+  text-align: center;
 }
 
-.cv-contents-form {
-  align-items: center;
-  display: flex;
+.card-holder {
+  width: 75%;
   height: 100%;
-  width: 1000px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   margin: 0 auto;
 }
 
-.form-box {
-  height: 75%;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.81);
-  font-family: "Times New Roman";
-}
+.open {
+  .card {
+    height: auto;
+    flex: 1;
+    border: 1px black solid;
 
-.form-box-item-left {
-  display: inline-block;
-  position: relative;
-  width: 20%;
-  height: 100%;
-  margin: 0;
-  float: left;
 
-  .form-box-item-list {
 
-    height: 50px;
-    width: 100%;
+    progress {
+      width: 100%;
+      height: 30px;
+    }
   }
 
-  .edit {
-  }
-}
+  .card-contents {
 
-.form-box-item-right {
-  position: relative;
-  width: 80%;
-  height: 100%;
-  margin: 0;
-  float: left;
-
-
-  .form-box-item-wrapper {
     width: 100%;
     height: 100%;
+    display: inline-block;
   }
 
-  .form-box-item-popout {
-    height: 52px;
-    width: auto;
-
+  .card-top {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height:100%;
+    padding: 50px 40px 0px 40px;
   }
 
-  .form-box-item-content {
-    background-color: #E1FAFF;
-    position: relative;
-    border: 1px solid #b9ced2;
-    border-left: 0px;
-    border-radius: 0 25px 25px 25px;
-    padding: 0 22.5px 10px 17px;
-    z-index: 100;
-
-    textarea {
-      width: 100%;
-      height: 100px;
-    }
-
-
-}
-
-button:enabled {
-  background-color: #9dff96;
-
-}
-
-button:disabled {
-  background-color: #bafffd;
-}
-
-
-
-.edit {
-  width: auto;
-}
-
-
-}
-
-.boxChoiceText,
-.boxChoice {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  width: 48%;
-  float: left;
-}
-
-.boxChoiceText {
-  span {
+  .card-progress {
+    flex: 0;
+    order:2;
     width: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: rgba(0, 0, 0, 0.81);
-    font-family: "Times New Roman";
+    height: 30px;
+    padding-bottom: 40px;
+  }
+  .card-step-text {
+    flex: 0;
+    order:1;
+    width:170px;
+    height: 30px
+  }
+  .card-step-title {
+    flex: 0;
+    order:3;
+    width:150px;
+    heifht: 30px
+  }
+  .card-description {
+    flex: 0;
+    order:4;
+    width:100%;
+    height:30px;
+    padding-bottom: 50px;
+  }
+
+  .card-status-button {
+    width: 100%;
+    height: 60px;
+    background-color: #8c8c8c;
   }
 }
 
-.submit-button {
-  background-color: #ff8c87;
-}
+.closed {
+  .card {
+    height: auto;
+    flex: 1;
+    border: 1px black solid;
 
-
-.ripple {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-}
-
-.button {
-  margin: 10px 0px 0 17px;
-  outline: none;
-  text-decoration: none;
-  border-radius: 15px;
-  justify-content: center;
-  cursor: pointer;
-  text-transform: uppercase;
-  height: 30px;
-  width: 120px;
-  opacity: 1;
-  border: 1px solid rgba(124, 202, 120, 0.6);
-
-  span {
-    color: rgba(26, 43, 25, 0.8);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.7px;
+    progress {
+      width: 100%;
+      height: 30px;
+    }
   }
+
+  .card-contents {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .card-top {
+    width: 240px;
+    height:100%;
+    padding: 50px 40px 0px 40px;
+  }
+
+  .card-progress {
+    width: 100%;
+    height: 30px;
+    padding-bottom: 40px;
+  }
+  .card-step-text {
+    width:170px;
+  }
+  .card-step-title {
+    width:150px;
+  }
+  .card-description {
+    width:100%;
+    padding-bottom: 50px;
+  }
+
+  .card-status-button {
+    width: 100%;
+    height: 60px;
+    background-color: #8c8c8c;
+  }
+
 }

@@ -1,8 +1,19 @@
-
-<div>
-  <progress [value]="0" [max]="cardInfo.outof"></progress>
-  <span>STEP {{cardInfo.step}}</span>
-  <h1>{{cardInfo.title}}</h1>
-  <span>{{cardInfo.description}}</span>
-  <div>Complete-></div>
+<div class="card" [style]="{'order': cardInfo.step}">
+  <div class="card-contents {{cardStatus}}" [ngClass]="{'step-open': cardInfo.step === stepOpen}">
+    <div class="card-top">
+      <div class="card-progress">
+        <progress [value]="cardCompletion[cardInfo.step]" [max]="cardInfo.outof"></progress>
+      </div>
+      <div class="card-step-text">
+        <span>STEP {{cardInfo.step}}</span>
+      </div>
+      <div class="card-step-title">
+        <h1>{{cardInfo.title}}</h1>
+      </div>
+      <div class="card-description">
+        <span>{{cardInfo.description}}</span>
+      </div>
+    </div>
+    <div class="card-status-button" (click)="completeCard(cardInfo.step)">Complete-></div>
+  </div>
 </div>

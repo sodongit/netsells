@@ -1,0 +1,114 @@
+
+.card {
+  height: auto;
+  flex: 1;
+  border: 1px black solid;
+
+  progress {
+    height:100%;
+    width:100%;
+  }
+
+  .card-contents {
+
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .open {
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      width: 240px;
+      height: 100%;
+      padding: 50px 40px 0px 40px;
+
+
+      .card-progress {
+        flex: 0;
+        order: 1;
+        width: 100%;
+        height: 30px;
+        padding-bottom: 40px;
+      }
+
+      .card-step-text {
+        flex: 0;
+        order: 2;
+        width: 170px;
+        height: 30px
+      }
+
+      .card-step-title {
+        flex: 0;
+        order: 3;
+        width: 150px;
+        heifht: 30px
+      }
+
+      .card-description {
+        flex: 0;
+        order: 4;
+        width: 100%;
+        height: 30px;
+        padding-bottom: 50px;
+      }
+    }
+
+    .card-status-button {
+      width: 100%;
+      height: 60px;
+      background-color: #8c8c8c;
+    }
+  }
+
+  .closed {
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      width: 240px;
+      height: 100%;
+      padding: 10px;
+
+
+      .card-progress {
+        progress {
+          height:100%;
+          width:100%;
+        }
+        flex: 0;
+        order: 2;
+        width: 50%;
+        height: 10px;
+        margin: 0 auto;
+
+      }
+
+      .card-step-text {
+        flex: 0;
+        order: 1;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+      }
+
+      .card-step-title {
+        display: none;
+      }
+
+      .card-description {
+        display: none;
+      }
+    }
+
+    .card-status-button {
+      display: none;
+    }
+  }
+
+  .step-open {
+    border: 1px solid #e05d5d
+  }
+}
+
