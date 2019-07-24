@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {CvList, CvService} from "../../../../core/services/cv.service";
 import {ApiService} from "../../../../shared/services/api.service";
@@ -42,23 +42,22 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   ]
 })
 
-export class CvComponent implements OnInit {
+export class CvComponent implements OnInit, OnDestroy{
 
   list;
   formCV;
   cardList;
   cardStatus = 'open';
   cardCompletion = {
-    1: 2,
-    2: 2,
-    3: 2
+    step1: 0,
+    step2: 0,
+    step3: 0
   };
 
   stepOpen = 'step1';
 
   apiError = false;
   apiErrorMessages = [];
-
   errorMessages = [];
 
 
@@ -73,6 +72,16 @@ export class CvComponent implements OnInit {
     this.subscription.add(this.apiService.apiError().subscribe(({error, errors}) => {
       this.apiError = error;
       this.apiErrorMessages = errors;
+    }));
+
+    this.subscription.add(this.formCV.step1.valueChanges.subscribe(() =>{
+      this.updateCardCompletion('step1');
+    }));
+    this.subscription.add(this.formCV.step2.valueChanges.subscribe(() =>{
+      this.updateCardCompletion('step2');
+    }));
+    this.subscription.add(this.formCV.step3.valueChanges.subscribe(() =>{
+      this.updateCardCompletion('step3');
     }));
   }
 
@@ -111,6 +120,16 @@ export class CvComponent implements OnInit {
 
   submit() {
     this.cvService.submitForm(this.formCV);
+  }
+
+  updateCardCompletion(step_id) {
+   this.cardCompletion[step_id] = Object.keys(this.formCV[step_id].controls)
+     .filter((key) => this.formCV[step_id].controls[key].valid === true)
+     .length;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 

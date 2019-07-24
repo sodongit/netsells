@@ -2,7 +2,7 @@
   <div class="card-contents {{cardStatus}}" [ngClass]="{'step-open': cardInfo.step === stepOpen}">
     <div class="card-top">
       <div class="card-progress">
-        <progress [value]="cardCompletion[cardInfo.step]" [max]="cardInfo.outof"></progress>
+        <progress [value]="cardCompletion['step' + cardInfo.step]" [max]="cardInfo.outof"></progress>
       </div>
       <div class="card-step-text">
         <span>STEP {{cardInfo.step}}</span>
@@ -14,6 +14,6 @@
         <span>{{cardInfo.description}}</span>
       </div>
     </div>
-    <div class="card-status-button" (click)="completeCard(cardInfo.step)">Complete-></div>
+    <div class="card-status-button" (click)="completeCard(cardInfo.step)">{{buttonText}}</div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 
 
 
@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnChanges {
 
 
   @Input() cardInfo;
@@ -17,12 +17,24 @@ export class CardComponent implements OnInit {
 
   @Output() stepChange: EventEmitter<number> = new EventEmitter();
 
+  buttonText = 'Complete ->';
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+      this.checkCompletionStatus();
+  }
+
   completeCard(step_id) {
     this.stepChange.emit(step_id);
+  }
+
+  checkCompletionStatus() {
+    const {step, outof} = this.cardInfo;
+    this.buttonText = this.cardCompletion['step' + step] !== outof ?
+      this.buttonText :
+      'Done';
   }
 }
