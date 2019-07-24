@@ -2,21 +2,22 @@
   <h2> Application Steps</h2>
   <span>Select the step you wish to complete.</span>
 </div>
-<div class="card-holder" [ngClass]="cardStatus">
-  <app-card
-    *ngFor="let cardInfo of cardList"
-    [cardInfo]="cardInfo"
-    [cardCompletion]="cardCompletion"
-    [cardStatus]="cardStatus"
-    [stepOpen]="stepOpen"
-    (stepChange)="completeCard($event)">
-  </app-card>
+<div class="content" [ngClass]="cardStatus" >
+  <div class="card-holder">
+    <app-card
+      *ngFor="let cardInfo of cardList"
+      [cardInfo]="cardInfo"
+      [cardCompletion]="cardCompletion"
+      [cardStatus]="cardStatus"
+      [stepOpen]="stepOpen"
+      (stepChange)="completeCard($event)">
+    </app-card>
+  </div>
+  <div class="step-form">
+    <app-step-form
+      [formStep]="formCV[stepOpen]"
+      [list]="list[stepOpen]"
+    ></app-step-form>
+    <button (click)="finish()">Next</button>
+  </div>
 </div>
-<div class="" [ngClass]="cardStatus">
-  <app-step-form
-  [formStep]="formCV[stepOpen]"
-  [list]="list[stepOpen]"
-  ></app-step-form>
-  <button (click)="finish()" >Next</button>
-</div>
-

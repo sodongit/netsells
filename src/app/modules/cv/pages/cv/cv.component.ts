@@ -106,7 +106,6 @@ export class CvComponent implements OnInit {
   }
 
   finish(){
-    this.stepOpen = `step0`;
     this.cardStatus = 'open';
   }
 
