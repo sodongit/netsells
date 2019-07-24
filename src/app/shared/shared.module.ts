@@ -5,6 +5,8 @@ import { UploadProgressComponent } from './components/upload-progress/upload-pro
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {CardComponent} from "./components/card/card.component";
+import { StepFormComponent } from './components/step-form/step-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,15 +15,18 @@ import {CardComponent} from "./components/card/card.component";
     HeaderComponent,
     FooterComponent,
     CardComponent,
+    StepFormComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
   ],
   exports: [
     FileUploadComponent,
     HeaderComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    StepFormComponent,
   ]
 })
 export class SharedModule { }
