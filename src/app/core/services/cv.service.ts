@@ -35,7 +35,6 @@ export class CvService {
           id: 0,
           label: 'First name',
           type: 'text',
-          description: 'Please enter your first name.',
           formControl: ['', [Validators.required, Validators.minLength(2)]],
           errorMessage: {
             required: 'A First name is required',
@@ -46,14 +45,12 @@ export class CvService {
           id: 1,
           label: 'Second name',
           type: 'text',
-          description: 'Please enter your last name.',
           formControl: ['']
         },
         email: {
           id: 2,
           label: 'Email Address',
           type: 'email',
-          description: 'Please enter a valid email address.',
           formControl: ['', [Validators.required, Validators.email]],
           errorMessage: {
             required: 'An email address is required',
@@ -64,7 +61,6 @@ export class CvService {
           id: 3,
           label: 'Phone Number',
           type: 'number',
-          description: 'Please enter the phone number we can contact you on.',
           formControl: ['']
         },
       }
@@ -118,7 +114,6 @@ export class CvService {
           id: 6,
           label: 'Upload Your CV',
           type: 'file',
-          description: 'Drag and drop or Upload you CV file here',
           formControl: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]],
           errorMessage: {
             required: 'The CV file is required',
@@ -129,7 +124,6 @@ export class CvService {
           id: 7,
           label: 'Upload Your Cover Letter',
           type: 'file',
-          description: 'Drag and drop or Upload you Cover Letter file here',
           formControl: [null, [FileType(['txt', 'docx', 'pdf'])]],
           errorMessage: {
             fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
@@ -150,28 +144,36 @@ export class CvService {
   }
 
 
-  getCVList(): CvList[] {
+  getCVList(){
     return Object.keys(this._cvList).map((key) => {
-      const {id, label, type, description} = this._cvList[key]
-      const field_name = key;
-      return {id, label, field_name, type, description};
-    });
+      const obj = {};
+      obj[key] = Object.keys(this._cvList[key].form)
+        .map((formKey) => {
+          const {id, label, type} = this._cvList[key].form[formKey];
+          const field_name = formKey;
+          return {id, label, field_name, type};
+        });
+      return obj
+    })
+      .reduce((ac, cr) => Object.assign(ac,cr), {});
   }
 
   //TODO refactor Object.keys(this._cvList)
 
-  getFormCV(): FormGroup {
-    const formObject = Object.keys(this._cvList)
-      .map((key) => this._cvList[key].form)
-      .reduce((ac,cr) => Object.assign(ac,cr), {});
-
-     return this.fb.group(Object.keys(formObject)
-      .reduce((ac, cr) => {
-      const control = {};
-      control[cr] = formObject[cr].formControl;
-      Object.assign(ac, control);
-      return ac;
-    }, {}));
+  getFormCV() {
+   return  Object.keys(this._cvList)
+      .map((key) => {
+        const stepList = {};
+        stepList[key] = this.fb.group(Object.keys(this._cvList[key].form)
+          .reduce((ac, cr) => {
+            const control = {};
+            control[cr] = this._cvList[key].form[cr].formControl;
+            Object.assign(ac, control);
+            return ac;
+          }, {}));
+        return stepList;
+      })
+      .reduce((ac, cr) => Object.assign(ac,cr), {});
   }
 
   getControlErrorMessage(control, error) {

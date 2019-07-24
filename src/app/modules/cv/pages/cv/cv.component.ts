@@ -44,8 +44,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 
 export class CvComponent implements OnInit {
 
-  list: CvList[];
-  formCV: FormGroup;
+  list;
+  formCV;
   cardList;
   cardStatus = 'open';
   cardCompletion = {
@@ -54,7 +54,7 @@ export class CvComponent implements OnInit {
     3: 2
   };
 
-  stepOpen = 1;
+  stepOpen = 'step1';
 
   apiError = false;
   apiErrorMessages = [];
@@ -67,9 +67,9 @@ export class CvComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private cvService: CvService,
               private apiService: ApiService) {
-    this.cardList = this.cvService.getCardList();
     this.list = this.cvService.getCVList();
     this.formCV = this.cvService.getFormCV();
+    this.cardList = this.cvService.getCardList();
     this.subscription.add(this.apiService.apiError().subscribe(({error, errors}) => {
       this.apiError = error;
       this.apiErrorMessages = errors;
@@ -81,6 +81,7 @@ export class CvComponent implements OnInit {
   }
 
   completeCard(step_id) {
+    this.stepOpen = `step${step_id}`;
   this.cardStatus = 'closed';
   }
 
@@ -104,6 +105,10 @@ export class CvComponent implements OnInit {
       }, []);
   }
 
+  finish(){
+    this.stepOpen = `step0`;
+    this.cardStatus = 'open';
+  }
 
   submit() {
     this.cvService.submitForm(this.formCV);
