@@ -12,6 +12,9 @@
       [stepOpen]="stepOpen"
       (stepChange)="completeCard($event)">
     </app-card>
+    <div *ngIf="submitButtonVisible">
+      <button (click)="submit()">SUBMIT APPLICATION</button>
+    </div>
   </div>
   <div class="step-form">
     <app-step-form

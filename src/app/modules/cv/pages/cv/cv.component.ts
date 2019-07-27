@@ -42,7 +42,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   ]
 })
 
-export class CvComponent implements OnInit, OnDestroy{
+export class CvComponent implements OnInit, OnDestroy {
 
   list;
   formCV;
@@ -53,6 +53,7 @@ export class CvComponent implements OnInit, OnDestroy{
     step2: 0,
     step3: 0
   };
+  submitButtonVisible = false;
 
   stepOpen = 'step1';
 
@@ -74,13 +75,13 @@ export class CvComponent implements OnInit, OnDestroy{
       this.apiErrorMessages = errors;
     }));
 
-    this.subscription.add(this.formCV.step1.valueChanges.subscribe(() =>{
+    this.subscription.add(this.formCV.step1.valueChanges.subscribe(() => {
       this.updateCardCompletion('step1');
     }));
-    this.subscription.add(this.formCV.step2.valueChanges.subscribe(() =>{
+    this.subscription.add(this.formCV.step2.valueChanges.subscribe(() => {
       this.updateCardCompletion('step2');
     }));
-    this.subscription.add(this.formCV.step3.valueChanges.subscribe(() =>{
+    this.subscription.add(this.formCV.step3.valueChanges.subscribe(() => {
       this.updateCardCompletion('step3');
     }));
   }
@@ -91,7 +92,7 @@ export class CvComponent implements OnInit, OnDestroy{
 
   completeCard(step_id) {
     this.stepOpen = `step${step_id}`;
-  this.cardStatus = 'closed';
+    this.cardStatus = 'closed';
   }
 
 
@@ -114,18 +115,27 @@ export class CvComponent implements OnInit, OnDestroy{
       }, []);
   }
 
-  finish(){
+  finish() {
     this.cardStatus = 'open';
+    this.isFormComplete()
   }
 
   submit() {
     this.cvService.submitForm(this.formCV);
   }
 
-  updateCardCompletion(step_id) {
-   this.cardCompletion[step_id] = Object.keys(this.formCV[step_id].controls)
-     .filter((key) => this.formCV[step_id].controls[key].valid === true)
-     .length;
+
+  private updateCardCompletion(step_id) {
+    this.cardCompletion[step_id] = Object.keys(this.formCV[step_id].controls)
+      .filter((key) => this.formCV[step_id].controls[key].valid === true)
+      .length;
+  }
+
+  private isFormComplete() {
+    this.submitButtonVisible = Object.keys(this.formCV)
+      .map((key) => this.formCV[key].valid)
+      .reduce((ac, cr) => ac ? cr : ac, true)
+
   }
 
   ngOnDestroy(): void {

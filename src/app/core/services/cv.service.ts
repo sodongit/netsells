@@ -185,14 +185,17 @@ export class CvService {
 
     const formData = new FormData();
 
-    for (const key of Object.keys(form.value)) {
-      const value = form.value[key];
-      if (value !== null) {
-        formData.append(key, value);
-      }
-    }
+    Object.keys(form)
+      .map((stepKey) => {
+        for (const key of Object.keys(form[stepKey].value)) {
+          const value = form[stepKey].value[key];
+          if (value !== null) {
+            formData.append(key, value);
+          }
+        }
+      });
 
-    this.apiCall.call(formData)
+    this.apiCall.call(formData);
 
   }
 }
