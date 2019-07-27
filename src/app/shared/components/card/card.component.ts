@@ -17,7 +17,7 @@ export class CardComponent implements OnInit, OnChanges {
 
   @Output() stepChange: EventEmitter<number> = new EventEmitter();
 
-  buttonText = 'Complete ->';
+  complete = false;
   constructor() { }
 
   ngOnInit() {
@@ -33,8 +33,6 @@ export class CardComponent implements OnInit, OnChanges {
 
   checkCompletionStatus() {
     const {step, outof} = this.cardInfo;
-    this.buttonText = this.cardCompletion['step' + step] !== outof ?
-      this.buttonText :
-      'Done';
+    this.complete = this.cardCompletion['step' + step] === outof;
   }
 }
