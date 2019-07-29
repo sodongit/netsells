@@ -1,8 +1,11 @@
-<div class="page style-black thanks">
+<div class="page thanks-black" [ngClass]="style">
   <app-header></app-header>
   <div class="contents">
     <router-outlet></router-outlet>
   </div>
-  <app-footer></app-footer>
+  <app-footer
+    [currentStyle]="style"
+    (styleChange)="styleChange($event)"
+  ></app-footer>
 </div>
 

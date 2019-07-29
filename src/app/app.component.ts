@@ -5,5 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'netsellsTest';
+
+  style = 'style-black';
+
+
+  styleChange(style) {
+    this.style = `style-${style}`;
+  }
+
 }

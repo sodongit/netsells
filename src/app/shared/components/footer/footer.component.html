@@ -1,4 +1,12 @@
 <footer>
-  <div class="icofont-moon iconfont-1x icofont-rotate-45"></div>
-  <div class="icofont-sun iconfont-1x "></div>
+  <div class="footer-content">
+    <div class="footer-icons" [ngClass]="currentStyle">
+      <div class="footer-icon-moon" >
+        <span class="icofont-moon iconfont-1x icofont-rotate-45" (click)="changeStyle('black')"></span>
+      </div>
+      <div class="footer-icon-sun" >
+        <span class="icofont-sun iconfont-1x" (click)="changeStyle('white')"></span>
+      </div>
+    </div>
+  </div>
 </footer>
