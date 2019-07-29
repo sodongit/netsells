@@ -14,16 +14,12 @@
         <span>{{cardInfo.description}}</span>
       </div>
     </div>
-    <div class="card-status-button" [ngSwitch]="complete === true">
+    <div class="card-status-button" [ngSwitch]="complete === true" (click)="completeCard(cardInfo.step)">
       <ng-template [ngSwitchCase]="false">
-        <div (click)="completeCard(cardInfo.step)">
           <span>Complete</span><span class="icofont-long-arrow-right"></span>
-        </div>
       </ng-template>
       <ng-template [ngSwitchCase]="true">
-        <div (click)="completeCard(cardInfo.step)">
           <span>Done</span>
-        </div>
       </ng-template>
     </div>
   </div>

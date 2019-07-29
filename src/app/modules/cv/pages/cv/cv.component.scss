@@ -3,8 +3,8 @@
   height: 20%;
   text-align: center;
 }
-.content {
-  height:100%;
+.card-content {
+  height:auto;
   width:100%;
 }
 
@@ -20,7 +20,7 @@
 .open {
   .card-holder {
     width: 75%;
-    height: 100%;
+    height: auto;
   }
   .step-form{
     display:none;

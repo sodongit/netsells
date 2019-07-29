@@ -7,34 +7,50 @@ header {
 .header-content {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
 
+  //.header-name,
+  //.header-title,
+  //.header-menu {
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //}
 
-  .header-name,
-  .header-title,
-  .header-menu {
+  .header-name {
+    height: 100%;
+    width: 20%;
+    float: left;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .header-name {
-    height: 100%;
-    flex: 1;
-  }
-
   .header-title {
     height: 100%;
-    flex: 4;
+    width: 60%;
+    font-size: 0.6rem;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .header-menu {
     height: 100%;
-    flex: 1;
+    width: 20%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .header-menu-boxes {
+
+    span {
+      margin: 0 0.1rem;
+    }
+
+    font-size: 0.1rem;
 
   }
 }
