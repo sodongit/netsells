@@ -1,0 +1,65 @@
+
+.welcome-contents {
+
+  height: 100%;
+  width: 100%;
+}
+
+.welcome-text {
+  text-align: center;
+  width: 430px;
+  height: auto;
+padding: 145px 0 105px 0;
+  margin: 0 auto;
+
+  p{
+    font-size: 1.5rem;
+    color: $red;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  strong {
+    font-size: 3rem;
+    font-family: 'Heebo';
+    font-stretch: ultra-expanded;
+  }
+}
+
+
+.welcome-text-header {
+  height: 100px;
+  flex: 1 100%;
+  text-align: center;
+
+}
+
+.welcome-text-content {
+  justify-content: center;
+  flex: 3 100%;
+  font-size: 24px;
+
+}
+
+.welcome-text-button {
+  height: 100px;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  color: $light;
+}
+
+.button {
+  background-color: $red;
+  outline: none;
+  text-decoration: none;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 65px;
+  width: 142px;
+  opacity: 1;
+  border: 0;
+  color: inherit;
+}
