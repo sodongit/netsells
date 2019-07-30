@@ -2,6 +2,7 @@ footer {
   height: 70px;
   width: 100%;
   flex: 0;
+  color: $light;
 }
 
 .footer-content {
@@ -33,7 +34,7 @@ footer {
     width: auto;
   }
 
-  .style-black::after {
+  .black::after {
     content: '\2022';
     font-size: 33px;
     color: $red;
@@ -42,7 +43,7 @@ footer {
     top: -19px;
   }
 
-  .style-white::after {
+  .white::after {
     content: '\2022';
     font-size: 33px;
     color: $red;

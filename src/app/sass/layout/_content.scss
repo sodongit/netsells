@@ -19,7 +19,7 @@
 }
 
 .style-black{
-  color: white;
+  color: $white;
 }
 
 .thanks-black{
@@ -29,6 +29,11 @@
 
 .welcome-black{
   background-image: url("/../../../assets/images/welcome_background.png");
+  background-size: 100% 100%;
+}
+
+.cv-black{
+  background-image: url("/../../../assets/images/Black_background.png");
   background-size: 100% 100%;
 }
 
