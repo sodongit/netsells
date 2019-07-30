@@ -12,7 +12,6 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
-  styleUrls: ['./cv.component.scss'],
   animations: [
     trigger('boxChoice', [
       state('edit', style({
@@ -84,6 +83,7 @@ export class CvComponent implements OnInit, OnDestroy {
     this.subscription.add(this.formCV.step3.valueChanges.subscribe(() => {
       this.updateCardCompletion('step3');
     }));
+    this.cvService.pageBackground.next('cv');
   }
 
   ngOnInit() {

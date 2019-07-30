@@ -8,7 +8,7 @@
         <span>STEP {{cardInfo.step}}</span>
       </div>
       <div class="card-step-title">
-        <h1>{{cardInfo.title}}</h1>
+        <span>{{cardInfo.title}}</span>
       </div>
       <div class="card-description">
         <span>{{cardInfo.description}}</span>
@@ -16,7 +16,7 @@
     </div>
     <div class="card-status-button" [ngSwitch]="complete === true" (click)="completeCard(cardInfo.step)">
       <ng-template [ngSwitchCase]="false">
-          <span>Complete</span><span class="icofont-long-arrow-right"></span>
+          <span name="text">COMPLETE</span><span class="icofont-long-arrow-right  icofont-2x"></span>
       </ng-template>
       <ng-template [ngSwitchCase]="true">
           <span>Done</span>

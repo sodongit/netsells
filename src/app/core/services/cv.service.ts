@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileType} from "../validators/file-validator";
 import {ApiCallService} from "./api-call.service";
 import {GitUrl} from "../validators/gitUrl";
+import {BehaviorSubject} from "rxjs";
 
 export interface CvList {
   id: number,
@@ -16,6 +17,9 @@ export interface CvList {
   providedIn: 'root'
 })
 export class CvService {
+
+
+  private _pageBackground = new BehaviorSubject('welcome');
 
   constructor(private fb: FormBuilder,
               private apiCall: ApiCallService) {
@@ -144,7 +148,7 @@ export class CvService {
   }
 
 
-  getCVList(){
+  getCVList() {
     return Object.keys(this._cvList).map((key) => {
       const obj = {};
       obj[key] = Object.keys(this._cvList[key].form)
@@ -155,13 +159,13 @@ export class CvService {
         });
       return obj
     })
-      .reduce((ac, cr) => Object.assign(ac,cr), {});
+      .reduce((ac, cr) => Object.assign(ac, cr), {});
   }
 
   //TODO refactor Object.keys(this._cvList)
 
   getFormCV() {
-   return  Object.keys(this._cvList)
+    return Object.keys(this._cvList)
       .map((key) => {
         const stepList = {};
         stepList[key] = this.fb.group(Object.keys(this._cvList[key].form)
@@ -173,7 +177,7 @@ export class CvService {
           }, {}));
         return stepList;
       })
-      .reduce((ac, cr) => Object.assign(ac,cr), {});
+      .reduce((ac, cr) => Object.assign(ac, cr), {});
   }
 
   getControlErrorMessage(control, error) {
@@ -198,4 +202,9 @@ export class CvService {
     this.apiCall.call(formData);
 
   }
+
+  get pageBackground() {
+    return this._pageBackground;
+  }
+
 }
