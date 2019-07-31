@@ -1,11 +1,11 @@
-<div class="card" [style]="{'order': cardInfo.step}">
-  <div class="card-contents {{cardStatus}}" [ngClass]="{'step-open': cardInfo.step === stepOpen}">
+<div class="card" [style]="{'order': cardInfo.stepOrder}" [ngClass]="{'step-open': cardInfo.step === stepOpen && cardStatus === 'closed'}">
+  <div class="card-contents {{cardStatus}}" >
     <div class="card-top">
       <div class="card-progress">
-        <progress [value]="cardCompletion['step' + cardInfo.step]" [max]="cardInfo.outof"></progress>
+        <progress [value]="cardCompletion['step' + cardInfo.stepOrder]" [max]="cardInfo.outof"></progress>
       </div>
       <div class="card-step-text">
-        <span>STEP {{cardInfo.step}}</span>
+        <span>STEP {{cardInfo.stepOrder}}</span>
       </div>
       <div class="card-step-title">
         <span>{{cardInfo.title}}</span>

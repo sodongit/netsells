@@ -87,11 +87,11 @@ export class CvComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    ['step1', 'step2', 'step3'].map((step) => this.updateCardCompletion(step));
   }
 
-  completeCard(step_id) {
-    this.stepOpen = `step${step_id}`;
+  completeCard(step) {
+    this.stepOpen = step;
     this.cardStatus = 'closed';
   }
 
@@ -127,7 +127,11 @@ export class CvComponent implements OnInit, OnDestroy {
 
   private updateCardCompletion(step_id) {
     this.cardCompletion[step_id] = Object.keys(this.formCV[step_id].controls)
-      .filter((key) => this.formCV[step_id].controls[key].valid === true)
+      .filter((key) => {
+        const {valid, value, errors} = this.formCV[step_id].controls[key]
+
+        return errors === null && value === '' ? true : valid
+      })
       .length;
   }
 

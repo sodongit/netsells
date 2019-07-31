@@ -27,8 +27,8 @@ export class CardComponent implements OnInit, OnChanges {
       this.checkCompletionStatus();
   }
 
-  completeCard(step_id) {
-    this.stepChange.emit(step_id);
+  completeCard(step) {
+    this.stepChange.emit(step);
   }
 
   checkCompletionStatus() {

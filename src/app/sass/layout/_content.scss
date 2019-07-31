@@ -41,3 +41,16 @@
   background-color: white;
   color: black;
 }
+
+
+.btn {
+  background-color: $red;
+  outline: none;
+  text-decoration: none;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  opacity: 1;
+  border: 0;
+  color: inherit;
+}

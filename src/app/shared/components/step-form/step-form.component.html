@@ -1,22 +1,17 @@
 <form class="" [formGroup]="formStep">
   <div *ngFor="let item of list"
        [ngSwitch]="item.type === 'file'">
-    <div>
-      <p>{{item.label}}</p>
-      <label for="form-textArea"></label>
+    <div class="step-form-text" [ngClass]="{'step-required': item.required === true}">
+      <span>{{item.label}}</span>
+    </div>
+    <label for="form-textArea"></label>
+    <div class="step-form-input">
       <ng-template [ngSwitchCase]="false">
         <input type='{{item.type}}' formControlName="{{item.field_name}}"
                *ngIf="item.type !== 'number' && item.type !== 'textArea' && item.type !== 'radio'">
         <input type='text' digitOnly formControlName="{{item.field_name}}" *ngIf="item.type === 'number'">
-        <textarea id="form-textArea" formControlName="{{item.field_name}}" *ngIf="item.type === 'textArea'"></textarea>
-        <div class="radio-buttons" *ngIf="item.type === 'radio'">
-          <input type="radio" id="resident-yes"
-                 name="{{item.field_name}}" value="true" checked formControlName="{{item.field_name}}">
-          <label for="resident-yes">True</label>
-          <input type="radio" id="resident-no"
-                 name="{{item.field_name}}" value="false" checked formControlName="{{item.field_name}}">
-          <label for="resident-no">False</label>
-        </div>
+        <textarea id="form-textArea" formControlName="{{item.field_name}}" placeholder="{{item.description}}"
+                  *ngIf="item.type === 'textArea'"></textarea>
       </ng-template>
       <ng-template [ngSwitchCase]="true">
         <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>

@@ -48,18 +48,11 @@
   display: flex;
   justify-content: center;
   color: $lightest;
+
+  button {
+    height: 65px;
+    width: 142px;
+  }
 }
 
-.button {
-  background-color: $red;
-  outline: none;
-  text-decoration: none;
-  justify-content: center;
-  cursor: pointer;
-  text-transform: uppercase;
-  height: 65px;
-  width: 142px;
-  opacity: 1;
-  border: 0;
-  color: inherit;
-}
+

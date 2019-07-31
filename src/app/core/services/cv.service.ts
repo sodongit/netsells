@@ -31,7 +31,8 @@ export class CvService {
 
   private _cvList = {
     step1: {
-      step: 1,
+      stepOrder: 1,
+      step: 'step1',
       title: 'Personal Details',
       description: 'Please complete your personal details section by clicking complete',
       form: {
@@ -39,6 +40,7 @@ export class CvService {
           id: 0,
           label: 'First name',
           type: 'text',
+          required: true,
           formControl: ['', [Validators.required, Validators.minLength(2)]],
           errorMessage: {
             required: 'A First name is required',
@@ -49,12 +51,14 @@ export class CvService {
           id: 1,
           label: 'Second name',
           type: 'text',
+          required: false,
           formControl: ['']
         },
         email: {
           id: 2,
           label: 'Email Address',
           type: 'email',
+          required: true,
           formControl: ['', [Validators.required, Validators.email]],
           errorMessage: {
             required: 'An email address is required',
@@ -65,20 +69,22 @@ export class CvService {
           id: 3,
           label: 'Phone Number',
           type: 'number',
+          required: false,
           formControl: ['']
         },
       }
     },
     step2: {
-      step: 2,
+      stepOrder: 2,
+      step: 'step2',
       title: 'More About You',
       description: 'Please complete this section by clicking complete',
       form: {
         live_in_uk: {
           id: 4,
           label: 'Do you live in the UK?',
-          type: 'radio',
-          description: 'Are you a current resident of the uk?',
+          type: 'input',
+          required: true,
           formControl: ['', Validators.required],
           errorMessage: {
             required: 'An answer to "Do you live in the uk" is required',
@@ -89,7 +95,7 @@ export class CvService {
           id: 5,
           label: 'Your Git Profile',
           type: 'text',
-          description: 'Please enter your git profile url',
+          required: true,
           formControl: ['', [Validators.required, GitUrl()]],
           errorMessage: {
             required: 'The Git profile url is required',
@@ -100,7 +106,8 @@ export class CvService {
           id: 8,
           label: 'About you',
           type: 'textArea',
-          description: 'Now tell us something about yourself in a minimum of 100 characters.',
+          required: true,
+          description: 'Let us know more about you. What are you in to?',
           formControl: ['', [Validators.required, Validators.minLength(100)]],
           errorMessage: {
             required: 'The About You description is required',
@@ -110,7 +117,8 @@ export class CvService {
       }
     },
     step3: {
-      step: 3,
+      stepOrder: 3,
+      step: 'step3',
       title: 'Files Upload',
       description: 'Just upload your cover letter to complete this section',
       form: {
@@ -118,6 +126,7 @@ export class CvService {
           id: 6,
           label: 'Upload Your CV',
           type: 'file',
+          required: true,
           formControl: [null, [Validators.required, FileType(['txt', 'docx', 'pdf'])]],
           errorMessage: {
             required: 'The CV file is required',
@@ -128,6 +137,7 @@ export class CvService {
           id: 7,
           label: 'Upload Your Cover Letter',
           type: 'file',
+          required: false,
           formControl: [null, [FileType(['txt', 'docx', 'pdf'])]],
           errorMessage: {
             fileType: 'The Cover Letter file type needs to be .txt, .docx or .pdf',
@@ -140,11 +150,17 @@ export class CvService {
   //TODO refactor Object.keys(this._cvList)
 
   getCardList() {
-    return Object.keys(this._cvList).map((key) => {
-      const {step, title, description, form} = this._cvList[key];
-      const outof = Object.keys(form).length;
-      return {step, title, description, outof};
-    });
+    return {
+      keys: Object.keys(this._cvList),
+      data: Object.keys(this._cvList).map((key) => {
+        const {step, stepOrder, title, description, form} = this._cvList[key];
+        const outof = Object.keys(form).length;
+        const obj = {};
+        obj[key] = {step, stepOrder, title, description, outof};
+        return obj;
+      })
+        .reduce((ac, cr) => Object.assign(ac, cr), {})
+    };
   }
 
 
@@ -153,9 +169,9 @@ export class CvService {
       const obj = {};
       obj[key] = Object.keys(this._cvList[key].form)
         .map((formKey) => {
-          const {id, label, type} = this._cvList[key].form[formKey];
+          const {id, label, type, required, description} = this._cvList[key].form[formKey];
           const field_name = formKey;
-          return {id, label, field_name, type};
+          return {id, label, field_name, type, required, description};
         });
       return obj
     })

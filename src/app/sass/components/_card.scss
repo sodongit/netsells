@@ -2,13 +2,15 @@
 .card {
   height: auto;
   flex: 1;
-  border: 1px black solid;
+  border: 1px $darker solid;
+  background: $darker;
+  border-radius: 5px;
 
   progress {
     height: 10px;
     width: 100%;
     background: none;
-    border:none;
+    border: none;
     border-radius: 20px;
   }
 
@@ -18,13 +20,15 @@
     border-radius: 20px;
     background-color: #000000;
   }
+
   progress::-webkit-progress-value {
     border: 0;
     height: 100%;
     border-radius: 20px;
-   background-color:$red;
+    background-color: $red;
 
   }
+
   progress::-moz-progress-bar {
     border: 0;
     height: 100%;
@@ -55,7 +59,7 @@
         width: 100%;
         height: 10px;
         padding-bottom: 33px;
-        color:$red;
+        color: $red;
         border-radius: 5px 5px 5px 5px;
       }
 
@@ -128,15 +132,15 @@
     .card-top {
       display: flex;
       flex-direction: column;
-      width: 240px;
+      width: 180px;
       height: 100%;
       padding: 10px;
 
 
       .card-progress {
         progress {
-          height: 100%;
           width: 100%;
+          height: 7px
         }
 
         flex: 0;
@@ -151,8 +155,10 @@
         flex: 0;
         order: 1;
         width: 100%;
-        height: 30px;
+        height: 10px;
         text-align: center;
+        font-size: 0.75rem;
+
       }
 
       .card-step-title {
@@ -168,9 +174,8 @@
       display: none;
     }
   }
-
-  .step-open {
-    border: 1px solid #e05d5d
-  }
 }
 
+.step-open {
+  border: 1px solid $red;
+}

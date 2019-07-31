@@ -1,26 +1,40 @@
-<div class="full-step-title">
-  <h2> Application Steps</h2>
-  <span>Select the step you wish to complete.</span>
-</div>
-<div class="card-content" [ngClass]="cardStatus" >
-  <div class="card-holder">
-    <app-card
-      *ngFor="let cardInfo of cardList"
-      [cardInfo]="cardInfo"
-      [cardCompletion]="cardCompletion"
-      [cardStatus]="cardStatus"
-      [stepOpen]="stepOpen"
-      (stepChange)="completeCard($event)">
-    </app-card>
-    <div *ngIf="submitButtonVisible">
-      <button (click)="submit()">SUBMIT APPLICATION</button>
+<div [ngSwitch]="cardStatus">
+  <div class="cv-content">
+    <ng-template [ngSwitchCase]="'open'">
+      <div class="full-step-title">
+        <h2> Application Steps</h2>
+        <span>Select the step you wish to complete.</span>
+      </div>
+    </ng-template>
+    <div class="card-content" [ngClass]="cardStatus">
+      <div class="card-holder">
+        <app-card
+          *ngFor="let cardInfo of cardList.keys"
+          [cardInfo]="cardList.data[cardInfo]"
+          [cardCompletion]="cardCompletion"
+          [cardStatus]="cardStatus"
+          [stepOpen]="stepOpen"
+          (stepChange)="completeCard($event)">
+        </app-card>
+        <div *ngIf="submitButtonVisible">
+          <button (click)="submit()">SUBMIT APPLICATION</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="step-form">
-    <app-step-form
-      [formStep]="formCV[stepOpen]"
-      [list]="list[stepOpen]"
-    ></app-step-form>
-    <button (click)="finish()">Next</button>
+    <ng-template [ngSwitchCase]="'closed'">
+      <div class="individual-step-title">
+        <h2> {{cardList.data[stepOpen].title}}</h2>
+        <span>Required fields are marked by an asterisk</span>
+      </div>
+      <div class="step-form">
+        <app-step-form
+          [formStep]="formCV[stepOpen]"
+          [list]="list[stepOpen]"
+        ></app-step-form>
+        <div class="step-form-button-next">
+        <button class="btn" (click)="finish()">Next</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
