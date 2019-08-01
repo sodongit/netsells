@@ -16,15 +16,19 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 export class FileUploadComponent implements ControlValueAccessor {
 
   @Input() progress;
+  @Input() label;
 
   onChange: Function;
   private file: File | null = null;
 
-  @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
-    const file = event && event.item(0);
+  @HostListener('change', ['$event']) emitFiles( event) {
+    const file = event.target.files && event.target.files.item(0);
     this.onChange(file);
     this.file = file;
+    event.preventDefault();
+    event.stopPropagation();
   }
+
 
   constructor( private host: ElementRef<HTMLInputElement> ) {
   }

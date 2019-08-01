@@ -1,5 +1,19 @@
 <div class="file-drop-area">
-  <span class="file-msg">{{file ? file.name : '' }}</span>
-  <input class="file-input file-input" type="file">
+  <svg viewBox='0 0 300 147' preserveAspectRatio='none'>
+    <path d='M0,0 300,0 300,147 0,147z'/>
+  </svg>
+  <div class="file-input-overlay">
+    <div class="file-input-icon">
+      <span class="icofont-file-fill iconfont-2x" [ngClass]="{'colour-red': file}">
+        <span class="file-msg" *ngIf="file">{{file.name}}</span>
+      </span>
+      <span class="file-input-label" *ngIf="!file">{{label}}</span>
+    </div>
+    <div class="file-input-upload-message">
+      <span *ngIf="!file">Drag and drop or Upload you CV file <span class="colour-red"> here</span></span>
+      <span *ngIf="file">Reupload a new file <span class="colour-red"> here</span></span>
+
+    </div>
+  </div>
+  <input class="file-input" type="file">
 </div>
-<app-upload-progress [progress]="progress"></app-upload-progress>

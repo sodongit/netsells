@@ -1,8 +1,10 @@
 <form class="" [formGroup]="formStep">
   <div *ngFor="let item of list"
        [ngSwitch]="item.type === 'file'">
-    <div class="step-form-text" [ngClass]="{'step-required': item.required === true}">
-      <span>{{item.label}}</span>
+    <div class="step-form-text" [ngClass]="{'step-required': item.required === true && item.type !== 'file'}">
+      <ng-template [ngSwitchCase]="false">
+        <span>{{item.label}}</span>
+      </ng-template>
     </div>
     <label for="form-textArea"></label>
     <div class="step-form-input">
@@ -14,7 +16,11 @@
                   *ngIf="item.type === 'textArea'"></textarea>
       </ng-template>
       <ng-template [ngSwitchCase]="true">
-        <app-file-upload formControlName="{{item.field_name}}" [progress]="progress"></app-file-upload>
+        <app-file-upload
+          [ngClass]="{'step-required-file': item.required === true }"
+          formControlName="{{item.field_name}}"
+                         [label]="item.label"
+                         [progress]="progress"></app-file-upload>
       </ng-template>
     </div>
   </div>
