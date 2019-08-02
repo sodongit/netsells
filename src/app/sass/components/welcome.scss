@@ -1,6 +1,9 @@
 
 .welcome-contents {
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
 }
@@ -8,18 +11,17 @@
 .welcome-text {
   text-align: center;
   width: 430px;
-  height: auto;
-  padding: 145px 0 105px 0;
-  margin: 0 auto;
 
-  p{
+
+  p {
     font-size: 1.5rem;
     color: $red;
     font-weight: 400;
     margin: 10px 0;
   }
 
-  strong {
+  span {
+    font-weight: 900;
     font-size: 3rem;
     font-family: 'Heebo';
     font-stretch: ultra-expanded;
@@ -44,6 +46,7 @@
 .welcome-text-button {
   height: 100px;
   width: 50%;
+  padding: 100px 0 0 0;
   margin: 0 auto;
   display: flex;
   justify-content: center;

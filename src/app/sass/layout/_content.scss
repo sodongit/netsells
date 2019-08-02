@@ -16,25 +16,49 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
+.wrapper {
+  height:100%;
+  width:100%;
+}
 .style-black{
   color: $white;
 }
 
+.thanks-black,
+.welcome-black,
+.cv-black,
+.thanks-white,
+.welcome-white,
+.cv-white {
+  background-attachment: fixed;
+  background-size: 100% 100%
+}
 .thanks-black{
   background-image: url("/../../../assets/images/thank_background.png");
-  background-size: 100% 100%;
+
 }
 
 .welcome-black{
   background-image: url("/../../../assets/images/welcome_background.png");
-  background-size: 100% 100%;
 }
 
 .cv-black{
   background-image: url("/../../../assets/images/Black_background.png");
-  background-size: 100% 100%;
+}
+
+.thanks-white{
+  background-image: url("/../../../assets/images/thank_background_white.png");
+}
+
+.welcome-white{
+  background-image: url("/../../../assets/images/welcome_background_white.png");
+}
+
+.cv-white{
+  background-image: url("/../../../assets/images/White_background.png");
 }
 
 .style-white{
