@@ -80,7 +80,7 @@ export const black: Theme = {
       '--card-border': 'var(--medium)',
 
       '--step-input-text': 'var(--light)',
-      '--step-input': 'var(--white)',
+      '--step-input': 'var(--light)',
     }
   }
 ;
