@@ -12,6 +12,7 @@ import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {DirectivesModule} from "./core/directives/directives.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ThemeService} from "./theme/theme.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

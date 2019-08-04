@@ -12,7 +12,7 @@
 }
 
 .page {
-  height:100%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,55 +20,42 @@
 }
 
 .wrapper {
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
 }
-.style-black{
-  color: $white;
+
+.style-black {
+  color: var(--white);
 }
 
 .thanks-black,
 .welcome-black,
-.cv-black,
-.thanks-white,
-.welcome-white,
-.cv-white {
+.cv-black {
   background-attachment: fixed;
   background-size: 100% 100%
 }
-.thanks-black{
-  background-image: url("/../../../assets/images/thank_background.png");
+
+.thanks-black {
+  background-image: var(--thanks-background);
 
 }
 
-.welcome-black{
-  background-image: url("/../../../assets/images/welcome_background.png");
+.welcome-black {
+  background-image: var(--welcome-background);
 }
 
-.cv-black{
-  background-image: url("/../../../assets/images/Black_background.png");
+.cv-black {
+  background-image: var(--cv-background);
 }
 
-.thanks-white{
-  background-image: url("/../../../assets/images/thank_background_white.png");
-}
-
-.welcome-white{
-  background-image: url("/../../../assets/images/welcome_background_white.png");
-}
-
-.cv-white{
-  background-image: url("/../../../assets/images/White_background.png");
-}
-
-.style-white{
-  background-color: white;
-  color: black;
+.style-white {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 
 .btn {
-  background-color: $red;
+  background-color: var(--red);
   outline: none;
   text-decoration: none;
   justify-content: center;

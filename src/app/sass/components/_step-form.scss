@@ -1,6 +1,7 @@
 .step-form-text {
   span {
     font-size: 0.9rem;
+    color: var(--step-card-title);
   }
 }
 
@@ -11,9 +12,9 @@
     width: 100%;
     height: 40px;
     background: transparent;
-    border: 1px solid $light;
+    border: 1px solid var(--step-input);
     font-size: 1.5rem;
-    color: $white;
+    color: var(--step-input-text);
     padding: 0 8px;
   }
 
@@ -21,8 +22,8 @@
     width: 100%;
     height: 138px;
     background: transparent;
-    border: 1px solid $light;
-    colour: $white;
+    border: 1px solid var(--light);
+    colour: var(--white);
     padding: 14px 12px;
   }
 
@@ -40,7 +41,7 @@
 
   path {
     fill: none;
-    stroke: $light;
+    stroke: var(--light);
     stroke-width: 2;
     stroke-dasharray: 6, 6;
   }
@@ -77,12 +78,12 @@
 
 
       .colour-red {
-        color: $red;
+        color: var(--red);
 
         .file-msg {
           font-family: 'Oswald';
           font-size: 0.8rem;
-          color: $white;
+          color: var(--white);
         }
       }
 
@@ -101,7 +102,7 @@
 
     .file-input-upload-message {
       font-size: 0.65rem;
-      color: $light;
+      color: var(--light);
     }
 
     input {
@@ -129,7 +130,7 @@
 .step-required::after {
   content: '*';
   font-size: 1rem;
-  color: $red;
+  color: var(--red);
   position: absolute;
   top: 0px;
 }
@@ -138,7 +139,7 @@
   .icofont-file-fill::after {
     content: '*';
 
-    color: $red;
+    color: var(--red);
     position: absolute;
     top: 40px;
   }

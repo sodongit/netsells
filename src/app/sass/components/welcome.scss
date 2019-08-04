@@ -11,13 +11,14 @@
 .welcome-text {
   text-align: center;
   width: 430px;
-
+  color: var(--welcome-text);
 
   p {
     font-size: 1.5rem;
-    color: $red;
+    color: var(--red);
     font-weight: 400;
     margin: 10px 0;
+    color: inherit;
   }
 
   span {
@@ -25,6 +26,7 @@
     font-size: 3rem;
     font-family: 'Heebo';
     font-stretch: ultra-expanded;
+    color: inherit;
   }
 }
 
@@ -50,7 +52,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  color: $lightest;
+  color: var(--welcome-text-button);
 
   button {
     height: 65px;

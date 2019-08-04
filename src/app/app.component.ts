@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {CvService} from "./core/services/cv.service";
+import {ThemeService} from "./theme/theme.service";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent {
 
   pageClass = '';
 
-  constructor(private cvService: CvService) {
+  constructor(private cvService: CvService,
+              private themeService: ThemeService) {
 
     cvService.pageBackground.subscribe((type) => {
       this.pageBackground = type;
@@ -20,9 +22,10 @@ export class AppComponent {
     })
   }
 
-  styleChange(style) {
-    this.style = style;
-    this.setBackgroundClass();
+  styleChange(event) {
+    event === 'black' ? this.themeService.setDarkTheme() :
+      this.themeService.setLightTheme();
+    this.style = event;
   }
 
   private setBackgroundClass() {

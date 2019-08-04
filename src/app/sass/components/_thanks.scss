@@ -10,6 +10,7 @@
     height: auto;
     padding: 80px 0 0 0;
     text-align: center;
+    color: var(--welcome-text);
   }
 
   h1 {
@@ -20,7 +21,7 @@
 
 
   h2 {
-    color: $red;
+    color: var(--red);
     margin: 0 0 5px 0;
   }
 

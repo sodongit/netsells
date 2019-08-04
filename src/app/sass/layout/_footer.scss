@@ -2,7 +2,7 @@ footer {
   height: 70px;
   width: 100%;
   flex: 0;
-  color: $light;
+  color: var(--nav);
 }
 
 .footer-content {
@@ -18,11 +18,13 @@ footer {
     justify-content: center;
 
     .footer-icon-moon {
+      color: var(--nav);
       width: 40px;
       height: 100%;
     }
 
     .footer-icon-sun {
+      color: var(--nav);
       width: 40px;
       height: 100%;
     }
@@ -37,7 +39,9 @@ footer {
   .black::after {
     content: '\2022';
     font-size: 33px;
-    color: $red;
+    height:0;
+    width:0;
+    color: var(--red);
     position: absolute;
     left: 56px;
     top: -19px;
@@ -46,7 +50,9 @@ footer {
   .white::after {
     content: '\2022';
     font-size: 33px;
-    color: $red;
+    height:0;
+    width:0;
+    color: var(--red);
     position: absolute;
     left: 107px;
     top: -19px;
